@@ -12,7 +12,7 @@ import com.freelance.marketplace.exception.DuplicateEmailException;
 import com.freelance.marketplace.repository.UserRepository;
 import com.freelance.marketplace.repository.WalletRepository;
 import com.freelance.marketplace.security.JwtUtil;
-import com.freelance.marketplace.service.UserService;
+import com.freelance.marketplace.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,17 +22,16 @@ import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final WalletRepository walletRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;  // <--- THÊM DÒNG NÀY
+    private final JwtUtil jwtUtil;
 
     @Override
     @Transactional
     public AuthResponse registerUser(RegisterRequest request) {
-        // ... code đã có (không thay đổi)
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new DuplicateEmailException("Email already exists: " + request.getEmail());
         }
@@ -67,24 +66,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginResponse loginUser(LoginRequest request) {
-        // 1. Tìm user theo email
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
-        // 2. Kiểm tra password
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");
         }
 
-        // 3. Kiểm tra tài khoản có bị khóa không
         if (user.getStatus() == UserStatus.LOCKED) {
             throw new RuntimeException("Account is locked");
         }
 
-        // 4. Tạo JWT token
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
 
-        // 5. Trả về response
         return LoginResponse.builder()
                 .accessToken(token)
                 .userId(user.getId())

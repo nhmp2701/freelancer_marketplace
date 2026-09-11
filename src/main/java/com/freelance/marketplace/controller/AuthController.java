@@ -4,7 +4,7 @@ import com.freelance.marketplace.dto.request.LoginRequest;
 import com.freelance.marketplace.dto.request.RegisterRequest;
 import com.freelance.marketplace.dto.response.AuthResponse;
 import com.freelance.marketplace.dto.response.LoginResponse;
-import com.freelance.marketplace.service.UserService;
+import com.freelance.marketplace.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
-        AuthResponse response = userService.registerUser(request);
+        AuthResponse response = authService.registerUser(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-        LoginResponse response = userService.loginUser(request);
+        LoginResponse response = authService.loginUser(request);
         return ResponseEntity.ok(response);
     }
 }

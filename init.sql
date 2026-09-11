@@ -22,3 +22,15 @@ CREATE TABLE IF NOT EXISTS wallets (
 );
 
 CREATE INDEX idx_users_email ON users(email);
+-- Bảng skill
+CREATE TABLE IF NOT EXISTS skills (
+     id BIGSERIAL PRIMARY KEY,
+     name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Bảng nối user - skill
+CREATE TABLE IF NOT EXISTS user_skills (
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    skill_id BIGINT NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, skill_id)
+);
