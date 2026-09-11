@@ -1,0 +1,388 @@
+<!DOCTYPE html><html class="light" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Rút tiền - Liên Kết Việt</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Guidelines -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "secondary": "#006a6a",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-error": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "on-background": "#191c1d",
+                    "on-tertiary-container": "#f67641",
+                    "surface-dim": "#d9dadb",
+                    "primary-fixed": "#d5e3ff",
+                    "warning": "#FFC107",
+                    "danger": "#DC3545",
+                    "surface-tint": "#3a5f94",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#370e00",
+                    "success": "#28A745",
+                    "primary-container": "#003366",
+                    "action-orange": "#D45D2A",
+                    "surface-container-high": "#e7e8e9",
+                    "on-primary-fixed": "#001b3c",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#002020",
+                    "on-error-container": "#93000a",
+                    "teal-tech": "#008080",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#006e6e",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "primary": "#001e40",
+                    "surface-bright": "#f8f9fa",
+                    "outline-variant": "#c3c6d1",
+                    "on-surface": "#191c1d",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "secondary-fixed": "#93f2f2",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f3f4f5",
+                    "outline": "#737780",
+                    "tertiary-container": "#5f1d00",
+                    "inverse-primary": "#a7c8ff",
+                    "on-primary-container": "#799dd6",
+                    "on-surface-variant": "#43474f",
+                    "tertiary": "#3c0f00",
+                    "on-tertiary-fixed-variant": "#802a00",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "surface-gray": "#E9ECEF",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "secondary-container": "#90efef",
+                    "inverse-surface": "#2e3132",
+                    "trust-blue": "#003366",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "gutter": "24px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "headline-sm": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "headline-xl": ["Be Vietnam Pro"],
+                    "label-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                    "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                    "headline-xl": ["40px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Hide scrollbar for clean inputs */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- Task-Focused Header (Navigation Shell Suppressed per Rules) -->
+<header class="bg-surface-container-lowest w-full h-16 flex items-center px-gutter shadow-sm sticky top-0 z-10">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-trust-blue ml-sm">Rút tiền về ngân hàng</h1>
+<div class="flex-1"></div>
+<button class="text-trust-blue font-label-md text-label-md hover:underline">Lịch sử</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-xl mx-auto px-gutter py-lg flex flex-col gap-md">
+<!-- Balance Card (Source) -->
+<div class="bg-surface-container-lowest rounded-xl p-md flex flex-col gap-xs shadow-[0_4px_20px_rgba(0,51,102,0.05)] border border-surface-container-low">
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                Số dư khả dụng
+            </div>
+<div class="font-headline-lg text-headline-lg text-trust-blue">
+                24,500,000 <span class="font-headline-sm text-headline-sm text-outline-variant">VND</span>
+</div>
+</div>
+<!-- Destination Bank Card -->
+<div class="flex flex-col gap-sm mt-sm">
+<label class="font-label-md text-label-md text-on-surface">Chuyển đến</label>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between border border-outline-variant hover:border-trust-blue transition-colors cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden border border-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A clean, modern logo of a Vietnamese commercial bank, featuring a bold geometric icon in deep blue and green, set against a pristine white background. High-quality corporate branding style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT7kgMXSVwDehP5N9SI8oQNGtUjb7KkjNXA1AOpEf2fN6lSz-ZjBAl_fGK4BOBiovoj8xCqPljS3baKp_sXuZIShpyRX79191Opz6RA9TIksFX-6WcyiLp7t6-m9nsEMa2mp8iwjvYlMMNTJcJ6l9PeQxq4Mqz1lYarIW51uF4jrVUv3SLO1_jxVVo6RBTK1EhvCMaFdNUsjfLyWyV5GCOgOvH8ImYiw0g2owe9gxHLQXXSCO3IJvoDg">
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Vietcombank</span>
+<span class="font-body-sm text-body-sm text-outline">**** **** 8899</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<button class="text-trust-blue font-label-md text-label-md flex items-center gap-1 w-fit mt-1 hover:underline">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                Thêm tài khoản ngân hàng mới
+            </button>
+</div>
+<!-- Amount Input -->
+<div class="flex flex-col gap-sm mt-sm">
+<div class="flex justify-between items-end">
+<label class="font-label-md text-label-md text-on-surface">Số tiền cần rút</label>
+<button class="font-label-md text-label-md text-action-orange hover:underline" id="btn-withdraw-all">Rút toàn bộ</button>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-4 pl-4 pr-16 font-headline-md text-headline-md text-on-surface focus:border-trust-blue focus:ring-1 focus:ring-trust-blue transition-all outline-none" id="amount-input" placeholder="0" type="text">
+<div class="absolute right-4 top-1/2 -translate-y-1/2 font-headline-sm text-headline-sm text-outline-variant pointer-events-none">
+                    VND
+                </div>
+</div>
+<p class="font-body-sm text-body-sm text-danger hidden" id="amount-error">Số tiền vượt quá số dư khả dụng.</p>
+</div>
+<!-- Transaction Details -->
+<div class="bg-surface-container-low rounded-xl p-4 mt-sm flex flex-col gap-3">
+<div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant">
+<span>Phí giao dịch</span>
+<span class="text-success font-label-md text-label-md">Miễn phí</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant">
+<span>Thời gian xử lý</span>
+<span class="font-label-md text-label-md text-on-surface">Ngay lập tức</span>
+</div>
+<div class="w-full h-px bg-outline-variant my-1"></div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Tổng tiền khấu trừ</span>
+<span class="font-headline-sm text-headline-sm text-trust-blue" id="total-deduction">0 VND</span>
+</div>
+</div>
+<div class="flex-1"></div>
+<!-- Action Button -->
+<button class="w-full bg-trust-blue text-on-primary font-headline-sm text-headline-sm py-4 rounded-xl mt-lg hover:bg-primary transition-colors disabled:bg-surface-container-highest disabled:text-outline disabled:cursor-not-allowed" id="btn-submit">
+            Xác nhận rút tiền
+        </button>
+</main>
+<!-- OTP Modal Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-on-surface/50 backdrop-blur-sm z-50 hidden flex items-end md:items-center justify-center transition-opacity duration-300 opacity-0" id="otp-modal">
+<div class="bg-surface-container-lowest w-full md:w-[400px] rounded-t-xl md:rounded-xl p-md flex flex-col transform translate-y-full md:translate-y-4 shadow-xl transition-transform duration-300" id="otp-modal-content">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-trust-blue">Xác thực giao dịch</h2>
+<button class="text-outline hover:text-on-surface transition-colors" id="btn-close-modal">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                Vui lòng nhập mã OTP gồm 6 chữ số đã được gửi đến số điện thoại <span class="font-label-md text-label-md text-on-surface">090****123</span> để hoàn tất giao dịch.
+            </p>
+<!-- OTP Inputs -->
+<div class="flex justify-between gap-2 mb-6">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+<input class="w-12 h-14 text-center font-headline-md text-headline-md border border-outline-variant rounded-lg focus:border-trust-blue focus:ring-1 focus:ring-trust-blue outline-none bg-surface-container-lowest" maxlength="1" type="text">
+</div>
+<div class="flex justify-center mb-lg">
+<button class="font-label-md text-label-md text-action-orange hover:underline">Gửi lại mã (59s)</button>
+</div>
+<button class="w-full bg-trust-blue text-on-primary font-headline-sm text-headline-sm py-4 rounded-xl hover:bg-primary transition-colors" id="btn-verify-otp">
+                Xác nhận
+            </button>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const amountInput = document.getElementById('amount-input');
+            const btnSubmit = document.getElementById('btn-submit');
+            const totalDeduction = document.getElementById('total-deduction');
+            const btnWithdrawAll = document.getElementById('btn-withdraw-all');
+            const amountError = document.getElementById('amount-error');
+            
+            const maxBalance = 24500000;
+
+            // Format number with commas
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Clean string to number
+            function parseNumber(str) {
+                return parseInt(str.replace(/,/g, '')) || 0;
+            }
+
+            // Handle Input Formatting and Validation
+            amountInput.addEventListener('input', (e) => {
+                let val = parseNumber(e.target.value);
+                
+                if (val > maxBalance) {
+                    amountError.classList.remove('hidden');
+                    amountInput.classList.add('border-danger', 'focus:border-danger', 'focus:ring-danger');
+                    amountInput.classList.remove('focus:border-trust-blue', 'focus:ring-trust-blue');
+                    btnSubmit.disabled = true;
+                } else {
+                    amountError.classList.add('hidden');
+                    amountInput.classList.remove('border-danger', 'focus:border-danger', 'focus:ring-danger');
+                    amountInput.classList.add('focus:border-trust-blue', 'focus:ring-trust-blue');
+                    btnSubmit.disabled = val === 0;
+                }
+
+                if (val > 0) {
+                    e.target.value = formatNumber(val);
+                    totalDeduction.textContent = formatNumber(val) + " VND";
+                } else {
+                    e.target.value = '';
+                    totalDeduction.textContent = "0 VND";
+                    btnSubmit.disabled = true;
+                }
+            });
+
+            // Withdraw All Button
+            btnWithdrawAll.addEventListener('click', () => {
+                amountInput.value = formatNumber(maxBalance);
+                totalDeduction.textContent = formatNumber(maxBalance) + " VND";
+                amountError.classList.add('hidden');
+                amountInput.classList.remove('border-danger', 'focus:border-danger', 'focus:ring-danger');
+                amountInput.classList.add('focus:border-trust-blue', 'focus:ring-trust-blue');
+                btnSubmit.disabled = false;
+            });
+
+            // Initial state
+            btnSubmit.disabled = true;
+
+            // Modal Logic
+            const modal = document.getElementById('otp-modal');
+            const modalContent = document.getElementById('otp-modal-content');
+            const btnCloseModal = document.getElementById('btn-close-modal');
+            const btnVerifyOtp = document.getElementById('btn-verify-otp');
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('translate-y-full', 'md:translate-y-4');
+                modalContent.classList.add('translate-y-0', 'md:translate-y-0');
+            }
+
+            function closeModal() {
+                modal.classList.add('opacity-0');
+                modalContent.classList.remove('translate-y-0', 'md:translate-y-0');
+                modalContent.classList.add('translate-y-full', 'md:translate-y-4');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300); // match duration-300
+            }
+
+            btnSubmit.addEventListener('click', () => {
+                if(!btnSubmit.disabled) openModal();
+            });
+
+            btnCloseModal.addEventListener('click', closeModal);
+            
+            // Close on click outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Simulate OTP verification success
+            btnVerifyOtp.addEventListener('click', () => {
+                btnVerifyOtp.innerHTML = `<span class="material-symbols-outlined animate-spin mr-2">progress_activity</span> Đang xử lý...`;
+                btnVerifyOtp.disabled = true;
+                setTimeout(() => {
+                    closeModal();
+                    // In a real app, redirect or show success screen
+                    alert("Giao dịch thành công!");
+                    btnVerifyOtp.innerHTML = `Xác nhận`;
+                    btnVerifyOtp.disabled = false;
+                    amountInput.value = '';
+                    totalDeduction.textContent = "0 VND";
+                    btnSubmit.disabled = true;
+                }, 1500);
+            });
+        });
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const routes={
+ 'Tìm việc':'jobs.html','Đăng dự án':'post-project.html','Ví':'wallet.html','Tin nhắn':'messages.html',
+ 'Đăng nhập ngay':'login.html','Đăng ký ngay':'register.html','Đăng ký':'register.html','Đăng nhập':'login.html',
+ 'Quản lý ví':'wallet.html','Nạp tiền':'deposit.html','Rút tiền về tài khoản':'withdraw.html','Xuất sao kê':'statement.html',
+ 'Xem tất cả dự án':'jobs.html','Dashboard':'admin.html','Quản lý User':'admin-users.html','Quản lý Người dùng':'admin-users.html',
+ 'Quản lý Job':'admin-projects.html','Quản lý Dự án':'admin-projects.html','Giao dịch':'admin-transactions.html','Giao dịch & Ví':'admin-transactions.html',
+ 'Dispute':'admin-disputes.html','Xử lý Tranh chấp':'admin-disputes.html','Mời làm việc':'invite.html'
+ };
+ document.querySelectorAll('a,button').forEach(el=>{
+   const t=(el.innerText||'').replace(/\s+/g,' ').trim();
+   for(const [k,u] of Object.entries(routes)){
+     if(t===k || t.includes(k)){ el.addEventListener('click',e=>{if(!el.getAttribute('href')||el.getAttribute('href')==='#'){e.preventDefault(); location.href=u;}}); break;}
+   }
+ });
+ document.querySelectorAll('button').forEach(b=>{
+   const t=(b.innerText||'').replace(/\s+/g,' ').trim();
+   if(/Xem chi tiết/.test(t)) b.onclick=()=>location.href='job-detail.html';
+   if(/Nộp Proposal|Gửi Proposal/.test(t)) b.onclick=()=>{alert('Proposal đã được gửi thành công! Bạn có thể tiếp tục trao đổi trong Tin nhắn.'); location.href='messages.html';};
+   if(/Gửi lời mời/.test(t)) b.onclick=()=>{alert('Đã gửi lời mời làm việc đến Freelancer.'); location.href='messages.html';};
+   if(/Tiếp tục/.test(t) && location.pathname.includes('post-project')) b.onclick=()=>alert('Đã lưu bước hiện tại. Bạn có thể tiếp tục hoàn thiện dự án.');
+   if(/Tạo tài khoản/.test(t)) b.onclick=()=>{alert('Tạo tài khoản thành công!');location.href='index.html'};
+   if(/Đăng nhập/.test(t) && location.pathname.includes('login')) b.onclick=()=>{location.href='index.html'};
+   if(/Xác nhận & Tiếp tục/.test(t)) b.onclick=()=>{alert('Yêu cầu nạp tiền đã được tạo.');location.href='wallet.html'};
+   if(/Xác nhận rút tiền/.test(t)) b.onclick=()=>{alert('Yêu cầu rút tiền đã được tạo.');location.href='wallet.html'};
+ });
+});
+</script>
+
+</body></html>

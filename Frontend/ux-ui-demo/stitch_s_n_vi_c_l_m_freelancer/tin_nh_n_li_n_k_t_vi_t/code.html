@@ -1,0 +1,394 @@
+<!DOCTYPE html><html class="light" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Tin nhắn - Liên Kết Việt</title>
+<!-- Google Fonts: Be Vietnam Pro -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for chat area */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e1e3e4;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #c3c6d1;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#001e40",
+                    "warning": "#FFC107",
+                    "on-surface": "#191c1d",
+                    "on-tertiary-fixed": "#370e00",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-gray": "#E9ECEF",
+                    "on-background": "#191c1d",
+                    "on-tertiary-fixed-variant": "#802a00",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9fa",
+                    "outline": "#737780",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#93f2f2",
+                    "error-container": "#ffdad6",
+                    "secondary": "#006a6a",
+                    "on-primary-fixed": "#001b3c",
+                    "inverse-on-surface": "#f0f1f2",
+                    "outline-variant": "#c3c6d1",
+                    "primary-fixed": "#d5e3ff",
+                    "on-secondary-fixed": "#002020",
+                    "trust-blue": "#003366",
+                    "inverse-primary": "#a7c8ff",
+                    "surface-container": "#edeeef",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "background": "#f8f9fa",
+                    "surface-container-high": "#e7e8e9",
+                    "tertiary-fixed": "#ffdbce",
+                    "success": "#28A745",
+                    "surface-variant": "#e1e3e4",
+                    "inverse-surface": "#2e3132",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "action-orange": "#D45D2A",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "primary-container": "#003366",
+                    "on-secondary-container": "#006e6e",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#3a5f94",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#90efef",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface": "#f8f9fa",
+                    "on-primary-container": "#799dd6",
+                    "on-tertiary-container": "#f67641",
+                    "teal-tech": "#008080",
+                    "tertiary-container": "#5f1d00",
+                    "danger": "#DC3545",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "tertiary": "#3c0f00",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#d9dadb",
+                    "on-surface-variant": "#43474f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "xl": "64px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-sm": ["Be Vietnam Pro"],
+                    "headline-xl": ["Be Vietnam Pro"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "body-sm": ["Be Vietnam Pro"],
+                    "headline-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-16">
+<!-- Brand -->
+<a class="flex items-center gap-2 hover:opacity-90 transition-opacity" href="#">
+<span class="text-headline-md font-headline-md font-bold text-trust-blue">Liên Kết Việt</span>
+</a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-trust-blue transition-colors font-label-md text-label-md py-1" href="#">Tìm việc</a>
+<a class="text-on-surface-variant hover:text-trust-blue transition-colors font-label-md text-label-md py-1" href="#">Đăng dự án</a>
+<a class="text-on-surface-variant hover:text-trust-blue transition-colors font-label-md text-label-md py-1" href="#">Ví</a>
+<!-- Active Item -->
+<a class="text-trust-blue border-b-2 border-trust-blue pb-1 font-bold font-label-md text-label-md transition-colors" href="#">Tin nhắn</a>
+</nav>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer hover:border-trust-blue transition-colors">
+<img alt="Ảnh đại diện người dùng" class="w-full h-full object-cover" data-alt="A professional headshot of a confident Vietnamese male user in his 30s. He has short dark hair and is wearing a crisp white button-down shirt. The background is a slightly blurred, bright, modern office space indicating a professional corporate environment. High quality, well-lit, conveying trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAmwPY7M7d-T6dWOQ0cQQNHuAtqrjTp4kzrQsIfE3mlkB6IpBBSyVzMjcv-Dmnsn5W0pTHrd2VcNPnGF1mM_5kKaiuQ-4dH65dyg7ry7dfqckgmIpO9FyUwOMGc23To0-dMo2Pnn3R8_Dyb2lCN9FGmmqKETaqSUK0KInBNNSSveEufhDQ1uYIylpP_bzVaGCbC86pTl-CHXAZnARFiACbgK8D2uSM3BirF0WZm50I_FJ4OhgfsSKwNQ">
+</div>
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Chat Interface) -->
+<main class="flex-grow flex items-center justify-center py-md px-4 sm:px-gutter max-w-container-max mx-auto w-full">
+<!-- Bento-style Chat Container -->
+<div class="w-full h-[calc(100vh-160px)] min-h-[600px] max-h-[800px] bg-surface-container-lowest rounded-xl shadow-[0_8px_30px_rgb(0,30,64,0.06)] border border-surface-variant flex overflow-hidden">
+<!-- Left Column: Conversation List -->
+<aside class="w-full md:w-80 lg:w-96 border-r border-surface-variant flex flex-col bg-surface-bright flex-shrink-0 transition-transform duration-300 relative z-10">
+<!-- Search & Header -->
+<div class="p-sm border-b border-surface-variant">
+<h1 class="font-headline-sm text-headline-sm text-primary mb-sm px-2">Trò chuyện</h1>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full bg-surface-container-low text-body-sm font-body-sm rounded-full pl-10 pr-4 py-2 border-none focus:ring-1 focus:ring-trust-blue focus:bg-surface-container-lowest transition-all placeholder:text-outline-variant text-on-surface outline-none" placeholder="Tìm kiếm tin nhắn..." type="text">
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex px-4 py-2 gap-4 border-b border-surface-variant bg-surface-bright">
+<button class="font-label-md text-label-md text-trust-blue border-b-2 border-trust-blue pb-1">Tất cả</button>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-trust-blue pb-1 transition-colors relative">
+                        Chưa đọc
+                        <span class="absolute -top-1 -right-3 w-2 h-2 bg-action-orange rounded-full"></span>
+</button>
+</div>
+<!-- List Items -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden">
+<!-- Active Chat Item -->
+<div class="flex items-center gap-3 p-4 bg-primary-fixed/20 cursor-pointer relative group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-trust-blue"></div>
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-surface-container-lowest shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a confident Vietnamese female software engineer in her late 20s. She is smiling gently at the camera, wearing a neat navy blue blazer over a crisp white shirt. The background is a slightly blurred modern corporate office environment with bright, natural lighting reflecting a light-mode aesthetic. The color palette emphasizes clean whites, professional deep blues, and warm skin tones, conveying trust and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzBmIoD0Fc-9XPkLjGn_yEzi3BPAMXodO798nSaBcfJ-3x79EvasvZeBCfDbvtHQ2gYK--wa7btpSD-jEtMqcXru_zMSOvbmb8qMmDziAQgmrDj_b2fffzUVr6nz0STBi31Xt3lh5nyirEHIpAZhID7Duy7NnLuSQtyC9QJceWGDmshg39b9WraWyyfGeaPI-3tFJ1mGrGiwLWsPAh5CPnPxsluRH0_AQ74-1psdsfiIQ7lQ4jsA_iBA">
+</div>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-success rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-label-md text-label-md text-primary truncate">Nguyễn Trần Vân Anh</h3>
+<span class="font-label-sm text-label-sm text-outline flex-shrink-0 ml-2">10:42 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Bản thiết kế này trông rất ổn, tôi sẽ gửi file gốc ngay.</p>
+</div>
+</div>
+<!-- Inactive Chat Item 1 -->
+<div class="flex items-center gap-3 p-4 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant group-hover:border-trust-blue transition-colors">
+<img class="w-full h-full object-cover" data-alt="A high-quality portrait photo of a Vietnamese male graphic designer in his early 30s. He has a creative yet professional appearance, wearing a stylish, minimalist charcoal grey turtleneck. He wears thin-rimmed glasses and has a focused, intelligent expression. The background is a clean, bright studio setting with soft, diffused white light that aligns perfectly with a modern, high-end digital platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP-U9B5HB_o4WQxamXuNu8P15mqs1vMinInv40kyYg0KkzQ53XPCFqP1MaTkX7rmf5LR-U6aDaBXIJ1fCeC0eEsZTRJ3M9_tsM4r9aI-DyzIp-lJzndgVe-z50h81_v8OfWsN9I9CcIKdGi9imtmswLsa3oC5CdvDAHkWP_n_S1_G1Z8ak8TPPgwHKO_1qUbQFdnDkKL8kZF_e9eS0YCeem55pTfh76FYZgqK1noPgNaVGoNajQd9dWA">
+</div>
+<!-- Offline/Away dot -->
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-warning rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Công ty TNHH TechViet</h3>
+<span class="font-label-sm text-label-sm text-outline flex-shrink-0 ml-2">Hôm qua</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium truncate text-on-surface">Bạn đã nhận được yêu cầu thanh toán chưa?</p>
+</div>
+<div class="w-5 h-5 bg-action-orange text-white rounded-full flex items-center justify-center font-label-sm text-[10px]">2</div>
+</div>
+<!-- Inactive Chat Item 2 -->
+<div class="flex items-center gap-3 p-4 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-secondary-container text-on-secondary-container font-headline-sm text-headline-sm border border-outline-variant">
+                                L
+                            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface-variant truncate">Lê Hoàng Quân</h3>
+<span class="font-label-sm text-label-sm text-outline flex-shrink-0 ml-2">T2</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+                                Cảm ơn bạn, dự án hoàn thành tốt.
+                            </p>
+</div>
+</div>
+<!-- Inactive Chat Item 3 -->
+<div class="flex items-center gap-3 p-4 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface-variant font-headline-sm text-headline-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">apartment</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface-variant truncate">Hệ thống LKV</h3>
+<span class="font-label-sm text-label-sm text-outline flex-shrink-0 ml-2">12/05</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Thông báo: Milestone 1 đã được giải ngân.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Chat Detail (Hidden on mobile by default in standard responsive patterns, but showing as a split pane here for tablet/desktop) -->
+<section class="hidden md:flex flex-1 flex-col bg-surface-container-lowest relative">
+<!-- Chat Header -->
+<div class="h-[72px] px-6 border-b border-surface-variant flex items-center justify-between bg-surface/80 backdrop-blur-md z-20">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-10 h-10 rounded-full overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a confident Vietnamese female software engineer in her late 20s. She is smiling gently at the camera, wearing a neat navy blue blazer over a crisp white shirt. The background is a slightly blurred modern corporate office environment with bright, natural lighting reflecting a light-mode aesthetic. The color palette emphasizes clean whites, professional deep blues, and warm skin tones, conveying trust and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnMtAmw_OFmbVt63c77T-JDzaH_7eOBTw1g6vr0iVT2nYXPsS9InY3EqqdsDgYKY_rve8ksIBKgDxCeDcA0JjUbHbYsvb280oa4rHm6GiKEE2xgxayXJQw0DZZQiM1SSwa8cpO41YSjZD5Sdm3ykToioDG9MXzvOO0NIIFGTHRBBNoKTu_lVVklQJV8TCi5BMG0mmcKS7uJ7p2y17at3hEMnunM-DFkVthu9s7NvsGGc-sxr0D01M8Qw">
+</div>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<h2 class="font-headline-sm text-[16px] leading-[20px] font-semibold text-primary">Nguyễn Trần Vân Anh</h2>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-medium">UI/UX Designer</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-success">Đang trực tuyến</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-trust-blue hover:bg-primary-fixed/30 transition-colors" title="Gọi thoại">
+<span class="material-symbols-outlined icon-filled text-[20px]">call</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-trust-blue hover:bg-primary-fixed/30 transition-colors" title="Gọi video">
+<span class="material-symbols-outlined icon-filled text-[20px]">videocam</span>
+</button>
+<div class="w-px h-6 bg-surface-variant mx-1"></div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Thông tin dự án">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-4 bg-surface-bright/40 relative">
+<!-- Decorative background ambient element -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#003366 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Date Divider -->
+<div class="flex justify-center my-2 relative z-10">
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full shadow-sm">Hôm nay</span>
+</div>
+<!-- Partner Message -->
+<div class="flex items-end gap-2 max-w-[80%] relative z-10">
+<img class="w-8 h-8 rounded-full shadow-sm object-cover flex-shrink-0" data-alt="A professional headshot of a confident Vietnamese female software engineer in her late 20s. She is smiling gently at the camera, wearing a neat navy blue blazer over a crisp white shirt. The background is a slightly blurred modern corporate office environment with bright, natural lighting reflecting a light-mode aesthetic. The color palette emphasizes clean whites, professional deep blues, and warm skin tones, conveying trust and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJnjvqHmr5w5nBjklv10PzbBw80Q24MZ-RPBjoUlFIfbjUJzROgcEx7Rc5o4XVCdbd_uHm-EycChZCul40Fz5lfckDIcnNcLUnTdFLKXRCKXmYhLkZdEVXGUFhg3jOnNZ6HWRnpinGg17u9KMiBdAnQ6UMGKmXy9mpIaZnVNHsaJj40nqHTz0OFkQ0-SwPatEZTwRqMT3xNLyd3BRltfpO6nGfE2zI6zLpVUfdQUicrM3SprEY0uNVug">
+<div class="flex flex-col gap-1">
+<div class="bg-surface-gray text-on-surface font-body-md text-body-md p-3 rounded-2xl rounded-bl-none shadow-sm border border-surface-variant/50">
+                                Chào bạn, mình đã xem qua mô tả dự án Thiết kế Landing Page Fintech. 
+                            </div>
+<span class="font-label-sm text-[11px] text-outline ml-1">10:30 AM</span>
+</div>
+</div>
+<!-- My Message -->
+<div class="flex items-end justify-end gap-2 max-w-[80%] self-end relative z-10">
+<div class="flex flex-col items-end gap-1">
+<div class="bg-trust-blue text-white font-body-md text-body-md p-3 rounded-2xl rounded-br-none shadow-[0_4px_12px_rgba(0,51,102,0.15)]">
+                                Chào Vân Anh, tuyệt vời. Bạn thấy thời gian hoàn thành trong 2 tuần có khả thi không?
+                            </div>
+<div class="flex items-center gap-1 mr-1">
+<span class="font-label-sm text-[11px] text-outline">10:35 AM</span>
+<span class="material-symbols-outlined text-[14px] text-trust-blue">done_all</span>
+</div>
+</div>
+</div>
+<!-- Partner Message with Attachment -->
+<div class="flex items-end gap-2 max-w-[80%] relative z-10">
+<img class="w-8 h-8 rounded-full shadow-sm object-cover flex-shrink-0" data-alt="A professional headshot of a confident Vietnamese female software engineer in her late 20s. She is smiling gently at the camera, wearing a neat navy blue blazer over a crisp white shirt. The background is a slightly blurred modern corporate office environment with bright, natural lighting reflecting a light-mode aesthetic. The color palette emphasizes clean whites, professional deep blues, and warm skin tones, conveying trust and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT_lTbTe4r4eZ5JAsi2OuPST0Jbem6Z4Te-bo8QfelDvf-2fiTnQbfSPuL9liP4qXKswKM2v8csgB-PsNPg6RD8nUtH_vvOkD50YIYCs8kzCK5bQ74bfMpyGRJU1U5w7fN7ZchICeRH6L2TewmqB9duMH0WwgdUedvLlgfoBpYTuaKqw3BRIzRFwoNNW7K6z_eUJGRoRNbVZ79Bx2ku_JHLdjCq6H4lOtXrHO6ZQ5yCGkoiPoK1YR_MQ">
+<div class="flex flex-col gap-1">
+<div class="bg-surface-gray p-2 rounded-2xl rounded-bl-none shadow-sm border border-surface-variant/50 max-w-sm">
+<img class="w-full h-auto rounded-xl object-cover mb-2 border border-outline-variant/30" data-alt="A sleek, high-fidelity UI design mockup displayed on a modern laptop screen, showing a dashboard interface with charts and data tables. The design features a clean white background with accents of deep 'Trust Blue' and vibrant 'Action Orange'. The lighting is bright and even, highlighting the crisp typography and structured layout. The overall composition is professional, minimalist, and perfectly suited for a top-tier freelance platform portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGAuJSxjVhjs8X8MLlRt4NXHmGqwvyMHr5N4NGDd-GcWr5H4yV6HyCvioxM0LmS9g-Jymd6z6UrUidlbSnP166pkS0rlToeZRL3GRU6wmh5eyrxGuVRaN9DUFP4i_WHPld9qCqNEx2FddqK0T4vr9n0JJHveiQoY4TzyBug5AzpAc1gob6PWllOuyY07MdDdI73PiHyE-db69RSwiuwtlGI1WWy1f1B42biz75rsVnPmdLJqm23TT4OQ">
+<p class="font-body-md text-body-md text-on-surface px-2 pb-1">Hoàn toàn khả thi. Bản thiết kế này trông rất ổn, tôi sẽ gửi file gốc ngay sau khi chúng ta chốt style guide này.</p>
+</div>
+<span class="font-label-sm text-[11px] text-outline ml-1">10:42 AM</span>
+</div>
+</div>
+<!-- Typing Indicator (Simulated) -->
+<div class="flex items-end gap-2 max-w-[80%] relative z-10 mt-2 opacity-70">
+<div class="w-8 h-8 flex-shrink-0"></div>
+<div class="bg-surface-container-high px-4 py-2 rounded-2xl rounded-bl-none flex items-center gap-1.5 h-10 w-16 justify-center">
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce" style="animation-delay: 0ms;"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce" style="animation-delay: 150ms;"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 border-t border-surface-variant bg-surface-container-lowest z-20">
+<!-- Formatting/Action Bar (Optional contextual tools) -->
+<div class="flex items-center gap-2 mb-2 px-1">
+<button class="text-outline hover:text-trust-blue transition-colors flex items-center justify-center p-1 rounded">
+<span class="material-symbols-outlined text-[20px]">text_format</span>
+</button>
+<button class="text-outline hover:text-trust-blue transition-colors flex items-center justify-center p-1 rounded">
+<span class="material-symbols-outlined text-[20px]">sentiment_satisfied</span>
+</button>
+<div class="flex-1"></div>
+<span class="font-label-sm text-[11px] text-outline bg-surface-container-high px-2 py-0.5 rounded text-secondary-fixed-dim">Dự án: Thiết kế Landing Page Fintech</span>
+</div>
+<div class="flex items-end gap-2">
+<button class="w-10 h-10 flex-shrink-0 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-trust-blue transition-colors bg-surface-bright border border-surface-variant">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<div class="flex-1 bg-surface-bright border border-surface-variant rounded-2xl shadow-sm focus-within:border-trust-blue focus-within:ring-1 focus-within:ring-trust-blue transition-all relative overflow-hidden flex items-end">
+<textarea class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface resize-none py-3 px-4 max-h-32 min-h-[44px]" oninput="this.style.height = ''; this.style.height = Math.min(this.scrollHeight, 128) + 'px'" placeholder="Nhập tin nhắn của bạn..." rows="1"></textarea>
+</div>
+<button class="w-11 h-11 flex-shrink-0 rounded-full bg-trust-blue text-white flex items-center justify-center hover:bg-primary transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-trust-blue focus:ring-offset-2">
+<span class="material-symbols-outlined icon-filled ml-1 text-[20px]">send</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-trust-blue w-full py-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-md full-width bottom mt-auto border-t-0 shadow-none z-10">
+<div class="flex flex-col gap-4 max-w-sm">
+<span class="text-headline-sm font-headline-sm font-bold text-white">Liên Kết Việt</span>
+<p class="text-primary-fixed font-body-sm text-body-sm">© 2024 Liên Kết Việt. Hệ thống kết nối Freelancer minh bạch &amp; tin cậy.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-label-md text-label-md text-primary-fixed hover:text-white transition-colors" href="#">Về chúng tôi</a>
+<a class="font-label-md text-label-md text-primary-fixed hover:text-white transition-colors" href="#">Quy trình làm việc</a>
+<a class="font-label-md text-label-md text-primary-fixed hover:text-white transition-colors" href="#">Chính sách bảo mật</a>
+<a class="font-label-md text-label-md text-primary-fixed hover:text-white transition-colors" href="#">Điều khoản sử dụng</a>
+<a class="font-label-md text-label-md text-primary-fixed hover:text-white transition-colors" href="#">Trung tâm hỗ trợ</a>
+</div>
+</footer>
+</body></html>

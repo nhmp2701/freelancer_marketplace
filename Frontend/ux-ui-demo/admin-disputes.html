@@ -1,0 +1,480 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quản lý Tranh chấp - Liên Kết Việt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#93f2f2",
+                      "inverse-surface": "#2e3132",
+                      "background": "#f8f9fa",
+                      "surface-container-high": "#e7e8e9",
+                      "primary": "#001e40",
+                      "teal-tech": "#008080",
+                      "secondary": "#006a6a",
+                      "danger": "#DC3545",
+                      "on-tertiary-container": "#f67641",
+                      "on-primary-container": "#799dd6",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "success": "#28A745",
+                      "surface-bright": "#f8f9fa",
+                      "surface-container": "#edeeef",
+                      "secondary-container": "#90efef",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "trust-blue": "#003366",
+                      "primary-container": "#003366",
+                      "on-tertiary-fixed-variant": "#802a00",
+                      "outline": "#737780",
+                      "tertiary": "#3c0f00",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#a7c8ff",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "on-background": "#191c1d",
+                      "surface-tint": "#3a5f94",
+                      "tertiary-fixed": "#ffdbce",
+                      "warning": "#FFC107",
+                      "outline-variant": "#c3c6d1",
+                      "primary-fixed": "#d5e3ff",
+                      "on-tertiary-fixed": "#370e00",
+                      "on-secondary-container": "#006e6e",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "surface-dim": "#d9dadb",
+                      "on-surface-variant": "#43474f",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#5f1d00",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-surface": "#191c1d",
+                      "surface": "#f8f9fa",
+                      "on-primary-fixed": "#001b3c",
+                      "on-secondary-fixed": "#002020",
+                      "surface-gray": "#E9ECEF",
+                      "action-orange": "#D45D2A",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "surface-variant": "#e1e3e4",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "container-max": "1200px",
+                      "xl": "64px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "sm": "12px",
+                      "md": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-xl": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-sm": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "42px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-md">
+<a class="text-headline-md font-headline-md font-bold text-trust-blue dark:text-primary-fixed-dim" href="#">Liên Kết Việt</a>
+</div>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex items-center gap-gutter">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md py-4 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-200" href="#">Tìm việc</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md py-4 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-200" href="#">Đăng dự án</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md py-4 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-200" href="#">Ví</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md py-4 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-200" href="#">Tin nhắn</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<button aria-label="notifications" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant cursor-pointer hover:scale-95 transition-transform duration-150">
+<img alt="Ảnh đại diện người dùng" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual against a clean, neutral background. The lighting is bright and even, casting soft shadows that highlight a confident and approachable expression. The color palette is minimal, focusing on skin tones and subtle clothing colors, complementing a modern, clean UI design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL74o6PhRRt2sXzTE_Y5Msl45Fi1GDJqCFHtSfOw6GDoR500ciS5FSlHn8CKaB8GMjscXXGVz7jcsgTQ8t9xareGXY-KW99I48xGt2w-lEg69t6kkl8oDFzBIu9P5CohPiumz2xp05EFHdXXLdvnzH40aSIo8t4nV2rOuhNO3-LOWUISHXvgtoKLKUo8R-x4J7qOB1UMlVL-xID2COG810v9l791cukA06A0IqfLGvcy9YsCwN_n7PcA">
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-trust-blue mb-sm">Quản lý Tranh chấp</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Theo dõi và xử lý các khiếu nại dự án cần can thiệp từ Admin.</p>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-col sm:flex-row gap-sm w-full md:w-auto">
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface focus:outline-none focus:border-trust-blue focus:ring-1 focus:ring-trust-blue font-body-md text-body-md text-on-surface transition-shadow" placeholder="Tìm theo ID, tên dự án..." type="text">
+</div>
+<select class="w-full sm:w-auto px-4 py-2 border border-outline-variant rounded-lg bg-surface font-body-md text-body-md text-on-surface focus:outline-none focus:border-trust-blue focus:ring-1 focus:ring-trust-blue cursor-pointer">
+<option value="all">Tất cả trạng thái</option>
+<option value="open">Đang mở (Cần xử lý)</option>
+<option value="resolved">Đã giải quyết</option>
+</select>
+</div>
+</div>
+<!-- Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-[0_4px_20px_rgba(0,51,102,0.05)] flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Tổng số tranh chấp (Tháng)</p>
+<p class="font-headline-lg text-headline-lg text-trust-blue">24</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-trust-blue">
+<span class="material-symbols-outlined text-2xl">report_problem</span>
+</div>
+</div>
+<div class="bg-surface rounded-xl p-md border border-danger/20 shadow-[0_4px_20px_rgba(220,53,69,0.05)] flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-danger mb-xs">Cần xử lý khẩn cấp</p>
+<p class="font-headline-lg text-headline-lg text-danger">5</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-danger/10 flex items-center justify-center text-danger">
+<span class="material-symbols-outlined text-2xl">warning</span>
+</div>
+</div>
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-[0_4px_20px_rgba(0,51,102,0.05)] flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Giá trị đang tranh chấp</p>
+<p class="font-headline-lg text-headline-lg text-trust-blue">145.5M ₫</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-trust-blue">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+</div>
+</div>
+</div>
+<!-- Dispute List - Bento Grid Style Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main List Area -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<!-- Dispute Card 1 (Active/Open) -->
+<div class="bg-surface rounded-xl border border-outline-variant/30 shadow-[0_8px_30px_rgba(0,51,102,0.06)] hover:shadow-[0_12px_40px_rgba(0,51,102,0.1)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+<!-- Card Header -->
+<div class="p-md border-b border-outline-variant/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm bg-surface-bright">
+<div class="flex items-center gap-sm">
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">error</span> Đang mở
+                            </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">#DSP-2024-089</span>
+</div>
+<div class="font-headline-md text-headline-md text-trust-blue">
+                            12,000,000 ₫
+                        </div>
+</div>
+<!-- Card Body -->
+<div class="p-md flex flex-col gap-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Xây dựng hệ thống API cho Mobile App E-commerce</h3>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mt-sm">
+<!-- Parties -->
+<div class="flex items-center gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-outline">Bên khiếu nại (Client)</span>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Client" class="w-full h-full object-cover" data-alt="A tiny, perfectly cropped headshot of a professional client in a business casual outfit, neutral background. Clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe1JHFAaoIYpUPYw0c9KSBdtKhFsHsmAYuOFAzuJdTZ3Wa1tubZEmXJAMAZWioA7Q0HeW0o0AgDtu9F1RszGHnpVh4H8GcQMkNxO6qg7U0Rlo_eMmPZchvRVHnV484n_mJB-Ul8sAJ2PHklacphfjNedNgONeimEd-UnmSwPTrkNP_CRP0b29zUaFE7QZZFMsVJjFaWUDkm9H6AXfJ8-c8pqIq2UNITbM_GWzp9tw1lpscobUXCccVXg">
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">TechCorp VN</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">compare_arrows</span>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-outline">Bên bị khiếu nại (Freelancer)</span>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Freelancer" class="w-full h-full object-cover" data-alt="A tiny, perfectly cropped headshot of a software developer wearing a casual t-shirt, neutral background. Clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI-oyOMrm7Bu9UcGsTVt6B8GIBPUo_5o1N6Mn_pgrlUawtsfizGyGevbOe0ykqBYeA4yPX6uj7gxWsrsdh_1utPHh1g_8vK2M-NXiTm4G7dXsvouAmNK28abNTVqJlKqpXKj09Q3myKNPNKRnSXNftcfhcjy9RUBXbaoZEcaHQtRLpXybO1T4uYo3GRGuXnYduel58WbGJoXFxK2rmzyi1k0LRDSoN8JF_agLov07PkuChRXG_PKsfdw">
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Nguyễn Văn A</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Reason Summary -->
+<div class="mt-sm bg-surface-container-lowest p-sm rounded-lg border border-outline-variant/20">
+<p class="font-label-sm text-label-sm text-danger mb-xs font-semibold">Lý do khiếu nại:</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Sản phẩm bàn giao không đúng thiết kế ban đầu, API response time chậm hơn cam kết (trung bình &gt;2s). Freelancer từ chối sửa chữa theo yêu cầu revision lần 2.</p>
+</div>
+</div>
+</div>
+<!-- Dispute Card 2 (Resolved) -->
+<div class="bg-surface rounded-xl border border-outline-variant/30 shadow-[0_4px_15px_rgba(0,51,102,0.03)] opacity-80 hover:opacity-100 transition-opacity duration-300 overflow-hidden cursor-pointer">
+<div class="p-md border-b border-outline-variant/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm bg-surface-container-low">
+<div class="flex items-center gap-sm">
+<span class="px-3 py-1 bg-success/10 text-success rounded-full font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Đã giải quyết
+                            </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">#DSP-2024-088</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface-variant">
+                            5,500,000 ₫
+                        </div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Thiết kế Logo &amp; Bộ nhận diện thương hiệu quán Cafe</h3>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mt-sm">
+<div class="flex items-center gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-outline">Bên khiếu nại (Freelancer)</span>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Trần Thị B (Designer)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">compare_arrows</span>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-outline">Client</span>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Coffee House SG</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination placeholder -->
+<div class="flex justify-center mt-md">
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-md border border-outline-variant flex items-center justify-center text-outline hover:bg-surface-container-low"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 rounded-md bg-trust-blue text-white flex items-center justify-center font-label-sm">1</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container-low font-label-sm">2</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container-low font-label-sm">3</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant flex items-center justify-center text-outline hover:bg-surface-container-low"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Detail/Action Panel (Right Sidebar - Sticky) -->
+<div class="lg:col-span-4 hidden lg:block">
+<div class="bg-surface rounded-xl border border-outline-variant/30 shadow-[0_10px_40px_rgba(0,51,102,0.08)] p-lg sticky top-24">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-sm mb-md">
+<h2 class="font-headline-sm text-headline-sm text-trust-blue">Chi tiết xử lý</h2>
+<span class="font-mono text-label-sm text-outline">#DSP-2024-089</span>
+</div>
+<!-- Escrow Wallet Status Indicator -->
+<div class="bg-surface-container-low rounded-lg p-md mb-md border border-outline-variant/50">
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-action-orange">lock</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Quỹ Escrow đang khóa</span>
+</div>
+<div class="text-headline-lg text-headline-lg text-trust-blue font-bold tracking-tight">
+                            12,000,000 ₫
+                        </div>
+<p class="font-label-sm text-label-sm text-outline mt-xs">Giao dịch an toàn - Chờ quyết định giải ngân</p>
+</div>
+<div class="space-y-md mb-lg">
+<div>
+<h4 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs">Bằng chứng từ Client</h4>
+<div class="flex gap-2">
+<a class="flex items-center gap-1 text-trust-blue font-label-sm hover:underline" href="#"><span class="material-symbols-outlined text-sm">description</span> api-logs.pdf</a>
+<a class="flex items-center gap-1 text-trust-blue font-label-sm hover:underline" href="#"><span class="material-symbols-outlined text-sm">image</span> screenshot-1.png</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs">Bằng chứng từ Freelancer</h4>
+<div class="flex gap-2">
+<a class="flex items-center gap-1 text-trust-blue font-label-sm hover:underline" href="#"><span class="material-symbols-outlined text-sm">folder_zip</span> source-code-v2.zip</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs">Lịch sử trao đổi</h4>
+<button class="text-trust-blue font-label-sm font-semibold flex items-center gap-1 hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-sm">chat</span> Xem toàn bộ tin nhắn
+                            </button>
+</div>
+</div>
+<!-- Admin Decision Actions -->
+<div class="border-t border-outline-variant/20 pt-md">
+<h3 class="font-label-md text-label-md text-on-surface mb-sm font-bold">Quyết định của Admin (Không thể hoàn tác)</h3>
+<div class="flex flex-col gap-sm">
+<button class="w-full py-3 px-4 bg-surface-container border border-danger/50 text-danger font-label-md rounded-lg hover:bg-error-container hover:border-danger transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">undo</span> Hoàn 100% tiền cho Client
+                            </button>
+<button class="w-full py-3 px-4 bg-trust-blue text-white font-label-md rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">payments</span> Giải ngân 100% cho Freelancer
+                            </button>
+<button class="w-full py-3 px-4 bg-surface border border-teal-tech text-teal-tech font-label-md rounded-lg hover:bg-teal-tech/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">call_split</span> Đề xuất chia tỷ lệ (Partial)
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-trust-blue dark:bg-primary full-width bottom w-full py-lg px-gutter">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-md">
+<div>
+<div class="text-headline-sm font-headline-sm font-bold text-white mb-sm">Liên Kết Việt</div>
+<p class="font-body-sm text-body-sm text-on-primary dark:text-primary-fixed max-w-sm">
+                    © 2024 Liên Kết Việt. Hệ thống kết nối Freelancer minh bạch &amp; tin cậy.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-gutter gap-y-sm">
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-white transition-colors hover:text-action-orange dark:hover:text-tertiary-fixed-dim" href="#">Về chúng tôi</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-white transition-colors hover:text-action-orange dark:hover:text-tertiary-fixed-dim" href="#">Quy trình làm việc</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-white transition-colors hover:text-action-orange dark:hover:text-tertiary-fixed-dim" href="#">Chính sách bảo mật</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-white transition-colors hover:text-action-orange dark:hover:text-tertiary-fixed-dim" href="#">Điều khoản sử dụng</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-white transition-colors hover:text-action-orange dark:hover:text-tertiary-fixed-dim" href="#">Trung tâm hỗ trợ</a>
+</div>
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const routes={
+ 'Tìm việc':'jobs.html','Đăng dự án':'post-project.html','Ví':'wallet.html','Tin nhắn':'messages.html',
+ 'Đăng nhập ngay':'login.html','Đăng ký ngay':'register.html','Đăng ký':'register.html','Đăng nhập':'login.html',
+ 'Quản lý ví':'wallet.html','Nạp tiền':'deposit.html','Rút tiền về tài khoản':'withdraw.html','Xuất sao kê':'statement.html',
+ 'Xem tất cả dự án':'jobs.html','Dashboard':'admin.html','Quản lý User':'admin-users.html','Quản lý Người dùng':'admin-users.html',
+ 'Quản lý Job':'admin-projects.html','Quản lý Dự án':'admin-projects.html','Giao dịch':'admin-transactions.html','Giao dịch & Ví':'admin-transactions.html',
+ 'Dispute':'admin-disputes.html','Xử lý Tranh chấp':'admin-disputes.html','Mời làm việc':'invite.html'
+ };
+ document.querySelectorAll('a,button').forEach(el=>{
+   const t=(el.innerText||'').replace(/\s+/g,' ').trim();
+   for(const [k,u] of Object.entries(routes)){
+     if(t===k || t.includes(k)){ el.addEventListener('click',e=>{if(!el.getAttribute('href')||el.getAttribute('href')==='#'){e.preventDefault(); location.href=u;}}); break;}
+   }
+ });
+ document.querySelectorAll('button').forEach(b=>{
+   const t=(b.innerText||'').replace(/\s+/g,' ').trim();
+   if(/Xem chi tiết/.test(t)) b.onclick=()=>location.href='job-detail.html';
+   if(/Nộp Proposal|Gửi Proposal/.test(t)) b.onclick=()=>{alert('Proposal đã được gửi thành công! Bạn có thể tiếp tục trao đổi trong Tin nhắn.'); location.href='messages.html';};
+   if(/Gửi lời mời/.test(t)) b.onclick=()=>{alert('Đã gửi lời mời làm việc đến Freelancer.'); location.href='messages.html';};
+   if(/Tiếp tục/.test(t) && location.pathname.includes('post-project')) b.onclick=()=>alert('Đã lưu bước hiện tại. Bạn có thể tiếp tục hoàn thiện dự án.');
+   if(/Tạo tài khoản/.test(t)) b.onclick=()=>{alert('Tạo tài khoản thành công!');location.href='index.html'};
+   if(/Đăng nhập/.test(t) && location.pathname.includes('login')) b.onclick=()=>{location.href='index.html'};
+   if(/Xác nhận & Tiếp tục/.test(t)) b.onclick=()=>{alert('Yêu cầu nạp tiền đã được tạo.');location.href='wallet.html'};
+   if(/Xác nhận rút tiền/.test(t)) b.onclick=()=>{alert('Yêu cầu rút tiền đã được tạo.');location.href='wallet.html'};
+ });
+});
+</script>
+
+</body></html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Hồ sơ Freelancer - Liên Kết Việt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "trust-blue": "#003366",
+                        "on-secondary-container": "#006e6e",
+                        "surface-tint": "#3a5f94",
+                        "on-primary-fixed": "#001b3c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#370e00",
+                        "teal-tech": "#008080",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-fixed": "#d5e3ff",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "primary": "#001e40",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d9dadb",
+                        "secondary": "#006a6a",
+                        "surface": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-container": "#90efef",
+                        "outline": "#737780",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "surface-gray": "#E9ECEF",
+                        "action-orange": "#D45D2A",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed": "#93f2f2",
+                        "tertiary": "#3c0f00",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#003366",
+                        "on-primary-container": "#799dd6",
+                        "background": "#f8f9fa",
+                        "danger": "#DC3545",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "success": "#28A745",
+                        "on-tertiary-container": "#f67641",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a7c8ff",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "outline-variant": "#c3c6d1",
+                        "on-surface-variant": "#43474f",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed": "#002020",
+                        "tertiary-container": "#5f1d00",
+                        "on-surface": "#191c1d",
+                        "surface-bright": "#f8f9fa",
+                        "warning": "#FFC107",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container": "#edeeef",
+                        "on-background": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Be Vietnam Pro"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-sm": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-xl": ["40px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none w-full sticky top-0 z-50 transition-all duration-300">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-md">
+<div class="text-headline-md font-headline-md font-bold text-trust-blue dark:text-primary-fixed-dim shrink-0">Liên Kết Việt</div>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest px-3 py-2 rounded-md" href="#">Tìm việc</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest px-3 py-2 rounded-md" href="#">Đăng dự án</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest px-3 py-2 rounded-md" href="#">Ví</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-blue dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest px-3 py-2 rounded-md" href="#">Tin nhắn</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative group">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-action-orange rounded-full border-2 border-surface"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high ml-2 overflow-hidden border border-outline-variant cursor-pointer hover:ring-2 hover:ring-trust-blue transition-all">
+<img alt="Ảnh đại diện người dùng" class="w-full h-full object-cover" data-alt="Ảnh đại diện người dùng, một chân dung chuyên nghiệp, ánh sáng tự nhiên, góc chụp chính diện, phông nền mờ, phong cách hiện đại và đáng tin cậy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8EsBU8rSLBcdGTnuOEZrb9Lh0uZQ3P6ezXLYM-cOj8rlQBDNc4tWk4E1f8XcYwKpf9Ht5rpjTTZa6xXPFlBgjdA7Q6mu8RWK5XtHaiVl2W9k4HjxtwTsM-EzJ-wov05QoIxKzNh0--5sPU5HrTv6YV7WWaJH568dxqGugha_bL0c7S2GUAPo69XV1obLy9P5a82O8eovdh86OxQ_D6OOhFRoNfyUt1FXOnbRdtZI0h_I_JwNfEeQZuA">
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-lg flex flex-col gap-lg">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- Left Column: Profile Summary (Span 4) -->
+<div class="md:col-span-4 flex flex-col gap-md">
+<!-- Profile Card -->
+<div class="glass-card rounded-xl p-md flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-trust-blue to-teal-tech opacity-10"></div>
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface shadow-sm mb-sm relative z-10">
+<img class="w-full h-full object-cover" data-alt="Chân dung một nam kỹ sư phần mềm Việt Nam, khoảng 30 tuổi, mặc áo sơ mi gọn gàng, mỉm cười tự tin. Ánh sáng studio mềm mại, phông nền xám nhạt, phong cách hiện đại và đáng tin cậy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYJGNfKVCzVtcqMbv4AYXLstetWB3ZhuIOxaG38YXBUbnzSHtKFoPyLPb77F-Z9j6Gmk8jxy3ntUitf8ya9yOCKaRfN5-pI564H5o1GZuKFYdvWYrVKqac8oqxEEnmeNsqMuf6qxPLwHKWgbz0sWLkPtxZg6lq4OwZu30HI68pwSaGT6b77Stkzx0K3FwQ4yiX7cOHKts4UCaMAQWr3hdSTy9GBpplelQSUvBEj78Bvs-CNCn2MKmmyw">
+</div>
+<h1 class="font-headline-md text-headline-md text-trust-blue mb-xs z-10">Trần Văn Nam</h1>
+<p class="font-body-md text-body-md text-outline mb-md z-10">Senior Fullstack Developer</p>
+<div class="w-full flex justify-between bg-surface-container-lowest rounded-lg p-3 border border-surface-variant mb-md z-10">
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-trust-blue">4.9</span>
+<div class="flex text-warning text-sm mb-1">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star_half" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Reputation Score</span>
+</div>
+<div class="w-px bg-surface-variant mx-2"></div>
+<div class="flex flex-col items-center justify-center">
+<span class="font-headline-sm text-headline-sm text-success">98%</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Completion Rate</span>
+</div>
+</div>
+<button class="w-full bg-trust-blue text-on-primary font-label-md text-label-md py-2 rounded-lg hover:bg-primary transition-colors z-10 shadow-sm flex items-center justify-center gap-2">
+                        Mời làm việc
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Skills Card -->
+<div class="glass-card rounded-xl p-md">
+<h2 class="font-headline-sm text-headline-sm text-trust-blue mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-tech" data-icon="psychology">psychology</span>
+                        Kỹ năng chuyên môn
+                    </h2>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-primary-fixed-dim">ReactJS</span>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-primary-fixed-dim">Node.js</span>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-primary-fixed-dim">TypeScript</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-outline-variant">PostgreSQL</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-outline-variant">AWS</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm border border-outline-variant">Docker</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & History (Span 8) -->
+<div class="md:col-span-8 flex flex-col gap-md">
+<!-- Bio Card -->
+<div class="glass-card rounded-xl p-md">
+<h2 class="font-headline-sm text-headline-sm text-trust-blue mb-sm">Giới thiệu bản thân</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Tôi là một kỹ sư phần mềm với hơn 7 năm kinh nghiệm trong việc xây dựng các ứng dụng web quy mô lớn. 
+                        Đam mê giải quyết các vấn đề phức tạp và tối ưu hóa hiệu suất hệ thống. Tôi đề cao tính minh bạch 
+                        trong giao tiếp và cam kết giao sản phẩm đúng hạn với chất lượng cao nhất. Đã từng làm việc với nhiều 
+                        startup công nghệ tại Việt Nam và khu vực Đông Nam Á.
+                    </p>
+</div>
+<!-- Work History Section -->
+<div class="glass-card rounded-xl p-md flex-grow">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-sm">
+<h2 class="font-headline-sm text-headline-sm text-trust-blue">Lịch sử làm việc &amp; Đánh giá</h2>
+<span class="font-label-sm text-label-sm text-outline bg-surface-container px-2 py-1 rounded">12 Dự án hoàn thành</span>
+</div>
+<div class="flex flex-col gap-lg">
+<!-- Project 1 -->
+<div class="group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-trust-blue transition-colors">Xây dựng hệ thống CRM cho doanh nghiệp BĐS</h3>
+<p class="font-label-sm text-label-sm text-outline">Tháng 8 2023 - Tháng 10 2023</p>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-trust-blue font-bold">45.000.000 ₫</p>
+<span class="bg-success/10 text-success px-2 py-0.5 rounded font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span> Completed
+                                    </span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm border border-surface-variant mt-sm relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-outline-variant opacity-30 text-2xl" data-icon="format_quote">format_quote</span>
+<div class="flex gap-1 text-warning mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Nam làm việc rất chuyên nghiệp, code sạch và dễ maintain. Hệ thống CRM hoạt động ổn định và đáp ứng đúng yêu cầu kinh doanh của chúng tôi. Sẽ tiếp tục hợp tác trong tương lai."</p>
+<p class="font-label-sm text-label-sm text-outline mt-2">- Nguyễn Văn A, Giám đốc TechReal</p>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-trust-blue transition-colors">Tích hợp cổng thanh toán VNPay cho E-commerce</h3>
+<p class="font-label-sm text-label-sm text-outline">Tháng 5 2023 - Tháng 6 2023</p>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-trust-blue font-bold">15.000.000 ₫</p>
+<span class="bg-success/10 text-success px-2 py-0.5 rounded font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span> Completed
+                                    </span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm border border-surface-variant mt-sm relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-outline-variant opacity-30 text-2xl" data-icon="format_quote">format_quote</span>
+<div class="flex gap-1 text-warning mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star_half" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Giao tiếp rõ ràng, hoàn thành task nhanh hơn dự kiến. Có một vài bug nhỏ lúc UAT nhưng đã fix ngay lập tức."</p>
+<p class="font-label-sm text-label-sm text-outline mt-2">- Lê Thị B, Project Manager</p>
+</div>
+</div>
+<button class="w-full text-trust-blue font-label-md text-label-md py-2 border border-trust-blue rounded-lg hover:bg-surface-container-low transition-colors mt-2">
+                            Xem thêm dự án
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-trust-blue dark:bg-primary w-full py-lg px-gutter mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-md">
+<div class="flex flex-col gap-sm">
+<div class="text-headline-sm font-headline-sm font-bold text-white">Liên Kết Việt</div>
+<p class="font-body-sm text-body-sm text-on-primary dark:text-primary-fixed max-w-sm">
+                    © 2024 Liên Kết Việt. Hệ thống kết nối Freelancer minh bạch &amp; tin cậy.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-md gap-y-sm">
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-action-orange dark:hover:text-tertiary-fixed-dim transition-colors" href="#">Về chúng tôi</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-action-orange dark:hover:text-tertiary-fixed-dim transition-colors" href="#">Quy trình làm việc</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-action-orange dark:hover:text-tertiary-fixed-dim transition-colors" href="#">Chính sách bảo mật</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-action-orange dark:hover:text-tertiary-fixed-dim transition-colors" href="#">Điều khoản sử dụng</a>
+<a class="font-label-md text-label-md text-primary-fixed dark:text-on-primary-container hover:text-action-orange dark:hover:text-tertiary-fixed-dim transition-colors" href="#">Trung tâm hỗ trợ</a>
+</div>
+</div>
+</footer>
+</body></html>

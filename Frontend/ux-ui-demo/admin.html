@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quản trị viên - Liên Kết Việt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "trust-blue": "#003366",
+                      "on-secondary-container": "#006e6e",
+                      "surface-tint": "#3a5f94",
+                      "on-primary-fixed": "#001b3c",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "surface-container-highest": "#e1e3e4",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#370e00",
+                      "teal-tech": "#008080",
+                      "inverse-on-surface": "#f0f1f2",
+                      "primary-fixed": "#d5e3ff",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "primary": "#001e40",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d9dadb",
+                      "secondary": "#006a6a",
+                      "surface": "#f8f9fa",
+                      "surface-variant": "#e1e3e4",
+                      "secondary-container": "#90efef",
+                      "outline": "#737780",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "on-tertiary-fixed-variant": "#802a00",
+                      "surface-gray": "#E9ECEF",
+                      "action-orange": "#D45D2A",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "secondary-fixed": "#93f2f2",
+                      "tertiary": "#3c0f00",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#003366",
+                      "on-primary-container": "#799dd6",
+                      "background": "#f8f9fa",
+                      "danger": "#DC3545",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "success": "#28A745",
+                      "on-tertiary-container": "#f67641",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#a7c8ff",
+                      "surface-container-high": "#e7e8e9",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "outline-variant": "#c3c6d1",
+                      "on-surface-variant": "#43474f",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-fixed": "#002020",
+                      "tertiary-container": "#5f1d00",
+                      "on-surface": "#191c1d",
+                      "surface-bright": "#f8f9fa",
+                      "warning": "#FFC107",
+                      "tertiary-fixed": "#ffdbce",
+                      "surface-container": "#edeeef",
+                      "on-background": "#191c1d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "xl": "64px",
+                      "lg": "40px",
+                      "md": "24px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-xl": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "42px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface shadow-sm hidden md:flex flex-col border-r border-surface-variant flex-shrink-0">
+<div class="h-16 flex items-center px-gutter border-b border-surface-variant">
+<span class="text-headline-md font-headline-md font-bold text-trust-blue">Liên Kết Việt</span>
+</div>
+<div class="flex-1 overflow-y-auto py-md px-sm">
+<nav class="space-y-sm">
+<!-- Admin Dashboard (Active) -->
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg bg-primary-container text-on-primary-container font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-trust-blue transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Quản lý User
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-trust-blue transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">work</span>
+                    Quản lý Job
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-trust-blue transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                    Dispute <span class="ml-auto bg-error text-on-error rounded-full px-2 py-0.5 font-label-sm text-label-sm">3</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-trust-blue transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">payments</span>
+                    Giao dịch
+                </a>
+</nav>
+</div>
+<div class="p-md border-t border-surface-variant">
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-error transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Đăng xuất
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- Top App Bar (Mobile Nav & User Info) -->
+<header class="h-16 bg-surface shadow-sm flex justify-between items-center px-gutter flex-shrink-0 z-10">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-headline-sm font-headline-sm text-trust-blue md:hidden font-bold">Liên Kết Việt</span>
+<span class="text-headline-md font-headline-md font-bold hidden md:block">Admin Dashboard</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant relative p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-surface-variant">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder for an admin user profile, showing a generic minimal silhouette against a light blue background, adhering to a modern corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRZVDGbKEpA9TKUxqLuk7VEx2nWaLoTdfiepdhD4dMqAu5_n0WgnwXRQG8cjZ9ClCHa0tgeq7c6vy5NKYH1943IM3NUhJDSuk0oPCBIftazecznT-_ATm9a3-RYqJ9aMmR56bjYltffvhDbYu7ml6NY7G9hBgAqdRE_7-ZfX5QnbFQ6Mz-prT0DR4Cc13eHEwDLQW-CcvJo3iPTPYqTsbqa4GlpGygTTnLQM2KN8ZF-XtjidzA_z5_9Q">
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-gutter bg-background">
+<!-- Bento Grid: Stats Overview -->
+<section class="mb-xl">
+<h2 class="text-headline-sm font-headline-sm mb-md text-trust-blue">Thống kê tổng quan</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-on-surface-variant font-label-md text-label-md">Tổng User</span>
+<span class="material-symbols-outlined text-trust-blue bg-primary-fixed p-1 rounded-md">group</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-trust-blue">12,450</div>
+<div class="text-body-sm font-body-sm text-success flex items-center mt-1">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                                +5% tháng này
+                            </div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-on-surface-variant font-label-md text-label-md">Tổng Job Active</span>
+<span class="material-symbols-outlined text-action-orange bg-tertiary-fixed-dim p-1 rounded-md">work</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-trust-blue">3,210</div>
+<div class="text-body-sm font-body-sm text-success flex items-center mt-1">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                                +12% tháng này
+                            </div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-on-surface-variant font-label-md text-label-md">Giao dịch Escrow</span>
+<span class="material-symbols-outlined text-teal-tech bg-secondary-fixed p-1 rounded-md">account_balance_wallet</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-trust-blue">8.5B ₫</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center mt-1">
+                                Đang giữ an toàn
+                            </div>
+</div>
+</div>
+<!-- Stat Card 4 (Alert) -->
+<div class="bg-error-container rounded-xl p-md shadow-sm border border-error/20 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-on-error-container font-label-md text-label-md">Dispute Cần Xử Lý</span>
+<span class="material-symbols-outlined text-error bg-white/50 p-1 rounded-md">gavel</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-error">3</div>
+<div class="text-body-sm font-body-sm text-on-error-container flex items-center mt-1">
+                                Cần hành động ngay
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+<!-- Quản lý Dispute (2 Columns) -->
+<section class="lg:col-span-2">
+<div class="flex justify-between items-center mb-md">
+<h2 class="text-headline-sm font-headline-sm text-trust-blue">Quản lý Dispute (Tranh chấp)</h2>
+<a class="text-trust-blue font-label-md text-label-md hover:underline flex items-center" href="#">
+                            Xem tất cả <span class="material-symbols-outlined text-[18px] ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Dispute Card 1 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-surface-variant hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-md mb-md border-b border-surface-variant pb-md">
+<div>
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-md font-label-sm text-label-sm">Disputed</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">#DSP-8821</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-trust-blue">Phát triển API thanh toán VNPay</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Lý do: Client cho rằng API chưa đạt chuẩn bảo mật theo yêu cầu.</p>
+</div>
+<div class="text-right">
+<div class="text-headline-sm font-headline-sm text-trust-blue font-bold">15,000,000 ₫</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Đang giữ trong Escrow</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-center gap-md">
+<div class="flex items-center gap-md w-full sm:w-auto">
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Client:</span>
+<span class="font-label-md text-label-md">TechCorp VN</span>
+</div>
+<span class="text-surface-variant">|</span>
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Freelancer:</span>
+<span class="font-label-md text-label-md">Nguyễn Văn A</span>
+</div>
+</div>
+<div class="flex gap-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-4 py-2 bg-surface text-trust-blue border border-trust-blue rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                                        Refund Client
+                                    </button>
+<button class="flex-1 sm:flex-none px-4 py-2 bg-trust-blue text-white rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">
+                                        Release for Freelancer
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Dispute Card 2 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-surface-variant hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-md mb-md border-b border-surface-variant pb-md">
+<div>
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-md font-label-sm text-label-sm">Disputed</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">#DSP-8822</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-trust-blue">Thiết kế UI/UX App Đặt xe</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Lý do: Freelancer trễ deadline 5 ngày không phản hồi.</p>
+</div>
+<div class="text-right">
+<div class="text-headline-sm font-headline-sm text-trust-blue font-bold">8,500,000 ₫</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Đang giữ trong Escrow</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-center gap-md">
+<div class="flex items-center gap-md w-full sm:w-auto">
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Client:</span>
+<span class="font-label-md text-label-md">StartUp XYZ</span>
+</div>
+<span class="text-surface-variant">|</span>
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Freelancer:</span>
+<span class="font-label-md text-label-md">Trần Thị B</span>
+</div>
+</div>
+<div class="flex gap-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-4 py-2 bg-surface text-trust-blue border border-trust-blue rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                                        Refund Client
+                                    </button>
+<button class="flex-1 sm:flex-none px-4 py-2 bg-trust-blue text-white rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">
+                                        Release for Freelancer
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quản lý User Mới / Cần Duyệt (1 Column) -->
+<section class="lg:col-span-1">
+<div class="flex justify-between items-center mb-md">
+<h2 class="text-headline-sm font-headline-sm text-trust-blue">User Gần Đây</h2>
+<button class="text-on-surface-variant hover:text-trust-blue">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="bg-surface rounded-xl shadow-sm border border-surface-variant overflow-hidden">
+<!-- User Item 1 -->
+<div class="p-sm border-b border-surface-variant flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-trust-blue font-bold">
+                                    L
+                                </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Lê Văn C</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Freelancer - UI/UX</div>
+</div>
+</div>
+<span class="bg-success/20 text-success px-2 py-1 rounded-md font-label-sm text-label-sm">Active</span>
+</div>
+<!-- User Item 2 -->
+<div class="p-sm border-b border-surface-variant flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-trust-blue font-bold">
+                                    M
+                                </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">MegaCorp VN</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Client</div>
+</div>
+</div>
+<span class="bg-success/20 text-success px-2 py-1 rounded-md font-label-sm text-label-sm">Active</span>
+</div>
+<!-- User Item 3 -->
+<div class="p-sm flex items-center justify-between hover:bg-surface-container-low transition-colors bg-error-container/30">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-trust-blue font-bold">
+                                    H
+                                </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Hoàng K.</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Freelancer - Dev</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-error/20 text-error px-2 py-1 rounded-md font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                    Locked
+                                </span>
+</div>
+</div>
+<div class="p-sm border-t border-surface-variant text-center">
+<a class="text-trust-blue font-label-md text-label-md hover:underline" href="#">Quản lý toàn bộ Users</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const routes={
+ 'Tìm việc':'jobs.html','Đăng dự án':'post-project.html','Ví':'wallet.html','Tin nhắn':'messages.html',
+ 'Đăng nhập ngay':'login.html','Đăng ký ngay':'register.html','Đăng ký':'register.html','Đăng nhập':'login.html',
+ 'Quản lý ví':'wallet.html','Nạp tiền':'deposit.html','Rút tiền về tài khoản':'withdraw.html','Xuất sao kê':'statement.html',
+ 'Xem tất cả dự án':'jobs.html','Dashboard':'admin.html','Quản lý User':'admin-users.html','Quản lý Người dùng':'admin-users.html',
+ 'Quản lý Job':'admin-projects.html','Quản lý Dự án':'admin-projects.html','Giao dịch':'admin-transactions.html','Giao dịch & Ví':'admin-transactions.html',
+ 'Dispute':'admin-disputes.html','Xử lý Tranh chấp':'admin-disputes.html','Mời làm việc':'invite.html'
+ };
+ document.querySelectorAll('a,button').forEach(el=>{
+   const t=(el.innerText||'').replace(/\s+/g,' ').trim();
+   for(const [k,u] of Object.entries(routes)){
+     if(t===k || t.includes(k)){ el.addEventListener('click',e=>{if(!el.getAttribute('href')||el.getAttribute('href')==='#'){e.preventDefault(); location.href=u;}}); break;}
+   }
+ });
+ document.querySelectorAll('button').forEach(b=>{
+   const t=(b.innerText||'').replace(/\s+/g,' ').trim();
+   if(/Xem chi tiết/.test(t)) b.onclick=()=>location.href='job-detail.html';
+   if(/Nộp Proposal|Gửi Proposal/.test(t)) b.onclick=()=>{alert('Proposal đã được gửi thành công! Bạn có thể tiếp tục trao đổi trong Tin nhắn.'); location.href='messages.html';};
+   if(/Gửi lời mời/.test(t)) b.onclick=()=>{alert('Đã gửi lời mời làm việc đến Freelancer.'); location.href='messages.html';};
+   if(/Tiếp tục/.test(t) && location.pathname.includes('post-project')) b.onclick=()=>alert('Đã lưu bước hiện tại. Bạn có thể tiếp tục hoàn thiện dự án.');
+   if(/Tạo tài khoản/.test(t)) b.onclick=()=>{alert('Tạo tài khoản thành công!');location.href='index.html'};
+   if(/Đăng nhập/.test(t) && location.pathname.includes('login')) b.onclick=()=>{location.href='index.html'};
+   if(/Xác nhận & Tiếp tục/.test(t)) b.onclick=()=>{alert('Yêu cầu nạp tiền đã được tạo.');location.href='wallet.html'};
+   if(/Xác nhận rút tiền/.test(t)) b.onclick=()=>{alert('Yêu cầu rút tiền đã được tạo.');location.href='wallet.html'};
+ });
+});
+</script>
+
+</body></html>

@@ -1,0 +1,58 @@
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    avatar_url VARCHAR(500),
+    bio TEXT,
+    role VARCHAR(20) NOT NULL DEFAULT 'USER',
+    reputation_score DECIMAL(3,2) DEFAULT 0.00,
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS wallets (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+    balance DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+    locked_balance DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    version BIGINT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS skills (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS user_skills (
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    skill_id BIGINT NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, skill_id)
+);
+
+CREATE TABLE IF NOT EXISTS jobs (
+    id BIGSERIAL PRIMARY KEY,
+    client_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    freelancer_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    budget DECIMAL(15,2) NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'OPEN',
+    deadline TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS job_skills (
+    job_id BIGINT NOT NULL REFERENCES jobs(id) ON DELETE CASCADE,
+    skill_id BIGINT NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
+    PRIMARY KEY (job_id, skill_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
+CREATE INDEX IF NOT EXISTS idx_jobs_client ON jobs(client_id);
+CREATE INDEX IF NOT EXISTS idx_jobs_freelancer ON jobs(freelancer_id);
+CREATE INDEX IF NOT EXISTS idx_jobs_budget ON jobs(budget);

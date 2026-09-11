@@ -1,0 +1,90 @@
+package com.freelance.marketplace.controller;
+
+import com.freelance.marketplace.config.SecurityConfig;
+import com.freelance.marketplace.security.JwtAuthenticationFilter;
+import com.freelance.marketplace.security.JwtUtil;
+import com.freelance.marketplace.service.job.JobService;
+import io.jsonwebtoken.JwtException;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(controllers = JobController.class, properties = "app.cors.allowed-origins=http://localhost:5173")
+@Import({SecurityConfig.class, JwtAuthenticationFilter.class})
+class JobControllerSecurityTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockitoBean
+    private JobService jobService;
+
+    @MockitoBean
+    private JwtUtil jwtUtil;
+
+    @MockitoBean
+    private UserDetailsService userDetailsService;
+
+    @Test
+    void jobSearchIsPublic() throws Exception {
+        when(jobService.searchJobs(any(), any(), any(), any(), any())).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/v1/jobs"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void invalidJobStatusReturnsBadRequest() throws Exception {
+        mockMvc.perform(get("/api/v1/jobs").queryParam("status", "NOT_A_STATUS"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void personalJobListRequiresAuthentication() throws Exception {
+        mockMvc.perform(get("/api/v1/jobs/me/posted"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void malformedTokenOnProtectedRouteReturnsUnauthorized() throws Exception {
+        when(jwtUtil.extractEmail("bad-token")).thenThrow(new JwtException("invalid"));
+
+        mockMvc.perform(get("/api/v1/jobs/me/posted")
+                        .header("Authorization", "Bearer bad-token"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void tokenForDeletedUserReturnsUnauthorized() throws Exception {
+        when(jwtUtil.extractEmail("orphan-token")).thenReturn("deleted@example.com");
+        when(userDetailsService.loadUserByUsername("deleted@example.com"))
+                .thenThrow(new UsernameNotFoundException("deleted"));
+
+        mockMvc.perform(get("/api/v1/jobs/me/posted")
+                        .header("Authorization", "Bearer orphan-token"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void configuredFrontendOriginIsAllowed() throws Exception {
+        mockMvc.perform(options("/api/v1/jobs")
+                        .header("Origin", "http://localhost:5173")
+                        .header("Access-Control-Request-Method", "GET"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5173"));
+    }
+}

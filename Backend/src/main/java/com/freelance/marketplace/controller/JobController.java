@@ -1,0 +1,80 @@
+package com.freelance.marketplace.controller;
+
+import com.freelance.marketplace.dto.request.CreateJobRequest;
+import com.freelance.marketplace.dto.request.UpdateJobRequest;
+import com.freelance.marketplace.dto.response.JobResponse;
+import com.freelance.marketplace.enums.JobStatus;
+import com.freelance.marketplace.service.job.JobService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/jobs")
+@RequiredArgsConstructor
+public class JobController {
+
+    private final JobService jobService;
+
+    // API công khai: tìm kiếm job
+    @GetMapping
+    public ResponseEntity<List<JobResponse>> searchJobs(
+            @RequestParam(required = false) JobStatus status,
+            @RequestParam(required = false) BigDecimal minBudget,
+            @RequestParam(required = false) BigDecimal maxBudget,
+            @RequestParam(required = false) String skill,
+            @RequestParam(required = false) String keyword) {
+        return ResponseEntity.ok(jobService.searchJobs(status, minBudget, maxBudget, skill, keyword));
+    }
+
+    // API công khai: xem chi tiết job
+    @GetMapping("/{id}")
+    public ResponseEntity<JobResponse> getJob(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.getJobById(id));
+    }
+
+    // Client đăng job
+    @PostMapping
+    public ResponseEntity<JobResponse> createJob(
+            Authentication authentication,
+            @Valid @RequestBody CreateJobRequest request) {
+        JobResponse response = jobService.createJob(authentication.getName(), request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    // Client sửa job
+    @PutMapping("/{id}")
+    public ResponseEntity<JobResponse> updateJob(
+            Authentication authentication,
+            @PathVariable Long id,
+            @Valid @RequestBody UpdateJobRequest request) {
+        return ResponseEntity.ok(jobService.updateJob(authentication.getName(), id, request));
+    }
+
+    // Client hủy job
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelJob(
+            Authentication authentication,
+            @PathVariable Long id) {
+        jobService.cancelJob(authentication.getName(), id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Client xem job mình đã đăng
+    @GetMapping("/me/posted")
+    public ResponseEntity<List<JobResponse>> getMyPostedJobs(Authentication authentication) {
+        return ResponseEntity.ok(jobService.getMyPostedJobs(authentication.getName()));
+    }
+
+    // Freelancer xem job mình đã nhận
+    @GetMapping("/me/accepted")
+    public ResponseEntity<List<JobResponse>> getMyAcceptedJobs(Authentication authentication) {
+        return ResponseEntity.ok(jobService.getMyAcceptedJobs(authentication.getName()));
+    }
+}
