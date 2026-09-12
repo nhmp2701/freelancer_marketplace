@@ -9,8 +9,8 @@ Dự án đang ở giai đoạn **backend nền tảng + prototype UX/UI**, chư
 
 - Backend Spring Boot đã có đăng ký, đăng nhập JWT, hồ sơ, kỹ năng và các thao tác cơ bản với công việc.
 - Frontend hiện là **18 trang HTML prototype tĩnh** trong `Frontend/ux-ui-demo`; giao diện và luồng điều hướng đã khá đầy đủ nhưng chưa có ứng dụng frontend thực, chưa gọi API và chưa quản lý trạng thái đăng nhập.
-- Các phần cốt lõi của một marketplace như proposal, chọn freelancer, hợp đồng, bàn giao, escrow, giao dịch, chat, đánh giá, tranh chấp và quản trị chưa có backend.
-- Backend build thành công và 16/16 test pass; test unit/MVC hiện tại không phụ thuộc PostgreSQL local.
+- Backend đã có proposal và chọn freelancer nguyên tử; các phần bàn giao, escrow, giao dịch, chat, đánh giá, tranh chấp và quản trị chưa có.
+- Backend build thành công và 30/30 test pass; test unit/MVC hiện tại không phụ thuộc PostgreSQL local.
 - Cấu trúc làm việc đã đặt backend trong `Backend/`, có cấu hình Git/env ở root; việc di chuyển chưa được stage/commit nên Git vẫn hiển thị backend cũ bị xóa và `Backend/` là thư mục mới.
 
 ## 2. Mục tiêu sản phẩm hiện tại
@@ -32,7 +32,7 @@ Cho phép hoàn thành một vòng đời công việc tối thiểu:
   -> hai bên đánh giá
 ```
 
-Mục tiêu gần nhất nên là: **chuyển prototype thành một frontend thực và hoàn thiện vertical slice từ đăng nhập đến đăng/tìm/xem công việc**, sau đó mới bổ sung proposal và vòng đời giao dịch.
+Mục tiêu backend gần nhất là hoàn thiện vòng đời `IN_PROGRESS` → `SUBMITTED` → `COMPLETED`; song song, frontend có thể nối auth, profile, job và proposal đã có.
 
 > Đây là mục tiêu được suy ra từ mã nguồn và prototype vì repository chưa có product specification chính thức.
 
@@ -42,10 +42,10 @@ Mục tiêu gần nhất nên là: **chuyển prototype thành một frontend th
 |---|---|---|
 | Backend | Java 21, Spring Boot 4.1.1, Spring MVC, Spring Data JPA, Spring Security | Có thể build/chạy |
 | Xác thực | JWT, BCrypt, stateless security filter | Đã có luồng cơ bản |
-| Database | PostgreSQL 15 qua Docker Compose, Flyway migration | Có schema users, wallets, skills, jobs; migration version `V1` |
+| Database | PostgreSQL 15 qua Docker Compose, Flyway migration | Có schema users, wallets, skills, jobs, proposals và lịch sử trạng thái job; migration tới `V3` |
 | Frontend | HTML + Tailwind CDN + JavaScript nội tuyến | Chỉ là prototype tĩnh |
-| Kiểm thử | JUnit/Spring Boot Test/Mockito/MockMvc | 5 file test, tổng 16 test |
-| Migration | Flyway | Baseline version `0`, schema version `1` |
+| Kiểm thử | JUnit/Spring Boot Test/Mockito/MockMvc | 8 file test, tổng 30 test |
+| Migration | Flyway | Baseline version `0`, schema version `3` |
 | CI/CD | Chưa thấy cấu hình | Chưa có |
 
 Backend đang theo cấu trúc quen thuộc:
@@ -88,20 +88,23 @@ Miền job hiện chia thành `JobCommandService` (tạo/sửa/hủy) và `JobQu
 | `DELETE /api/v1/jobs/{id}` | Chủ job chuyển trạng thái sang `CANCELLED` |
 | `GET /api/v1/jobs/me/posted` | Danh sách job đã đăng |
 | `GET /api/v1/jobs/me/accepted` | Danh sách job đã nhận |
+| `POST /api/v1/jobs/{jobId}/proposals` | Freelancer gửi proposal vào job `OPEN` |
+| `PUT /api/v1/proposals/{id}` | Chủ proposal sửa khi còn `PENDING` và job còn `OPEN` |
+| `DELETE /api/v1/proposals/{id}` | Chủ proposal rút proposal |
+| `GET /api/v1/proposals/me` | Danh sách proposal của freelancer, có pagination |
+| `GET /api/v1/jobs/{jobId}/proposals` | Chủ job xem proposal, có pagination |
+| `POST /api/v1/proposals/{id}/accept` | Chủ job chọn freelancer và chuyển job sang `IN_PROGRESS` |
 
 ### Giới hạn của lifecycle hiện tại
 
 Mặc dù entity đã có `freelancer` và nhiều trạng thái, code chưa có use case để:
 
-- freelancer gửi proposal;
-- client chọn proposal/gán freelancer;
-- chuyển job sang `IN_PROGRESS`;
 - freelancer bàn giao và chuyển sang `SUBMITTED`;
 - client nghiệm thu hoặc mở tranh chấp;
 - chuyển tiền escrow;
 - đánh giá sau hoàn thành.
 
-Vì vậy `getMyAcceptedJobs` đã tồn tại nhưng hiện chưa có API nghiệp vụ nào tạo ra một job “đã nhận” theo đúng luồng.
+`getMyAcceptedJobs` hiện đã có dữ liệu từ use case accept proposal thật. Transition tiếp theo chưa có là bàn giao và nghiệm thu.
 
 ## 5. Phần frontend prototype đã có
 
@@ -132,9 +135,9 @@ Tuy nhiên đây chưa phải frontend triển khai:
 |---|---|---|
 | Đăng ký/đăng nhập | Có | Cần nối frontend, xử lý token và lỗi |
 | Hồ sơ/kỹ năng | Có một phần | Thiếu portfolio, lịch sử việc, review |
-| Tìm/xem job | Có một phần | Đã public và có filter; còn thiếu pagination/sort |
+| Tìm/xem job | Có | Public, có filter, pagination, sort và validation khoảng budget |
 | Đăng/sửa/hủy job | Có | Thiếu frontend thực và test authorization |
-| Proposal/lời mời | Chưa có | Cần domain + API + state transition |
+| Proposal/lời mời | Có proposal | Đã tạo/sửa/rút/xem/chấp nhận; lời mời chưa có |
 | Tin nhắn | Chưa có | Cần conversation/message + realtime hoặc polling |
 | Ví/sao kê | Chỉ có entity wallet | Thiếu ledger, transaction, deposit/withdraw |
 | Escrow/thanh toán | Chưa có | Cần thiết kế an toàn tiền và idempotency |
@@ -155,7 +158,7 @@ Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
 Điểm tích cực:
 
 - application khởi động được với PostgreSQL 15.19 local;
-- Flyway baseline/migration `V1` chạy thành công và Hibernate `validate` schema;
+- Flyway migration tới `V3` chạy thành công và Hibernate `validate` schema;
 - service đã bắt đầu được tách theo trách nhiệm auth/profile/skill/job;
 - thao tác sửa/hủy job có kiểm tra chủ sở hữu và trạng thái `OPEN`;
 - auth, mapping lỗi, quyền truy cập job và JWT lỗi đã có test hồi quy;
@@ -165,7 +168,7 @@ Hạn chế:
 
 - chưa có integration test repository/database tự cô lập bằng Testcontainers;
 - chưa test token JWT hết hạn bằng đồng hồ kiểm soát được và chưa có refresh/revocation;
-- chưa có OpenAPI/API contract, pagination và chuẩn response chung;
+- chưa có OpenAPI/API contract và chuẩn response chung; job/proposal đã có pagination;
 - chưa có kiểm tra frontend vì chưa có frontend application.
 
 ## 8. Rủi ro cần xử lý sớm
@@ -192,10 +195,10 @@ Các file cấu hình root, `.env.example`, README và `.gitignore` đã đượ
 
 ### P1 — Dữ liệu và bảo trì
 
-- tìm job trả toàn bộ danh sách, chưa pagination và chưa quy định sort;
+- các danh sách job cá nhân vẫn trả toàn bộ dữ liệu, chưa pagination;
 - validation response và error response chưa có một envelope thống nhất;
 - chưa có CI và database test tự dựng/tự dọn.
 
 ## 9. Kết luận trạng thái
 
-Dự án đã hoàn thành milestone ổn định backend Foundation P0: cấu hình an toàn hơn, lỗi HTTP nhất quán hơn, route công khai đúng chủ đích, schema có migration và 16 test hồi quy đều pass. Khoảng trống lớn nhất tiếp theo là **biến luồng mẫu thành một vertical slice có dữ liệu thật**: tạo frontend application rồi nối auth → profile → browse/detail/create job trước khi mở rộng sang proposal và thanh toán.
+Dự án đã có backend từ auth tới job → proposal → chọn freelancer, schema ở `V3` và 30 test hồi quy đều pass. Khoảng trống backend lớn nhất tiếp theo là **bàn giao → nghiệm thu**, sau đó mới tới review và ledger/escrow; frontend có thể bắt đầu nối vào các API hiện hữu.

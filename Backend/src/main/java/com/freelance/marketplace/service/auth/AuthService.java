@@ -1,4 +1,4 @@
-package com.freelance.marketplace.service;
+package com.freelance.marketplace.service.auth;
 
 import com.freelance.marketplace.dto.request.LoginRequest;
 import com.freelance.marketplace.dto.request.RegisterRequest;

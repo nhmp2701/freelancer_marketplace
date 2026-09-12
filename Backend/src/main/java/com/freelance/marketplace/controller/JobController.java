@@ -3,10 +3,14 @@ package com.freelance.marketplace.controller;
 import com.freelance.marketplace.dto.request.CreateJobRequest;
 import com.freelance.marketplace.dto.request.UpdateJobRequest;
 import com.freelance.marketplace.dto.response.JobResponse;
+import com.freelance.marketplace.dto.response.PageResponse;
 import com.freelance.marketplace.enums.JobStatus;
 import com.freelance.marketplace.service.job.JobCommandService;
 import com.freelance.marketplace.service.job.JobQueryService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +30,18 @@ public class JobController {
 
     // API công khai: tìm kiếm job
     @GetMapping
-    public ResponseEntity<List<JobResponse>> searchJobs(
+    public ResponseEntity<PageResponse<JobResponse>> searchJobs(
             @RequestParam(required = false) JobStatus status,
-            @RequestParam(required = false) BigDecimal minBudget,
-            @RequestParam(required = false) BigDecimal maxBudget,
+            @RequestParam(required = false) @PositiveOrZero BigDecimal minBudget,
+            @RequestParam(required = false) @PositiveOrZero BigDecimal maxBudget,
             @RequestParam(required = false) String skill,
-            @RequestParam(required = false) String keyword) {
-        return ResponseEntity.ok(jobQueryService.searchJobs(status, minBudget, maxBudget, skill, keyword));
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "0") @Min(0) int page,
+            @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size,
+            @RequestParam(defaultValue = "createdAt") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDirection) {
+        return ResponseEntity.ok(jobQueryService.searchJobs(
+                status, minBudget, maxBudget, skill, keyword, page, size, sortBy, sortDirection));
     }
 
     // API công khai: xem chi tiết job

@@ -99,17 +99,17 @@ Mục tiêu: tạo giá trị marketplace thật trước khi đầu tư vào ad
 
 #### Domain tối thiểu
 
-- [ ] `Proposal`: job, freelancer, cover letter, bid amount, delivery time, status, timestamps.
-- [ ] Quy tắc: một freelancer không gửi trùng proposal active cho cùng job; chủ job không tự proposal; chỉ job `OPEN` nhận proposal.
-- [ ] Client chấp nhận đúng một proposal theo transaction, gán freelancer và chuyển job sang `IN_PROGRESS`.
+- [x] `Proposal`: job, freelancer, cover letter, bid amount, delivery time, status, timestamps.
+- [x] Quy tắc: một freelancer không gửi trùng proposal active cho cùng job; chủ job không tự proposal; chỉ job `OPEN` nhận proposal.
+- [x] Client chấp nhận đúng một proposal theo transaction, gán freelancer và chuyển job sang `IN_PROGRESS`.
 - [ ] Freelancer được gán mới có thể submit; client sở hữu mới có thể accept/reject submission.
 - [ ] Ghi lại lịch sử transition thay vì cho client sửa status tùy ý.
 
 #### API/UI tối thiểu
 
-- [ ] Gửi/rút/sửa proposal khi hợp lệ.
-- [ ] Xem proposal của freelancer và danh sách proposal trên job của client.
-- [ ] Chọn freelancer.
+- [x] Gửi/rút/sửa proposal khi hợp lệ.
+- [x] Xem proposal của freelancer và danh sách proposal trên job của client.
+- [x] Chọn freelancer.
 - [ ] Bàn giao và nghiệm thu.
 - [ ] Dashboard “việc đang làm/đã đăng” dựa trên trạng thái thật.
 
@@ -173,7 +173,7 @@ Thực hiện sau khi lifecycle công việc ổn định.
 | 4 | Tạo frontend shell từ design system prototype | Nền để chuyển từng màn hình sang dữ liệu thật |
 | 5 | Nối auth end-to-end | Vertical slice nhỏ nhất chứng minh tích hợp |
 | 6 | Nối profile và jobs | Tận dụng toàn bộ backend đã có |
-| 7 | Thiết kế/triển khai proposal | Capability marketplace quan trọng nhất còn thiếu |
+| 7 | Hoàn thiện bàn giao/nghiệm thu | Proposal và chọn freelancer đã có; cần khép kín lifecycle job |
 
 ## 4. Các quyết định cần chốt nhưng chưa nên chặn Foundation MVP
 

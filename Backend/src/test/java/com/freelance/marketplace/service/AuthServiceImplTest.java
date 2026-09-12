@@ -9,7 +9,7 @@ import com.freelance.marketplace.enums.UserStatus;
 import com.freelance.marketplace.repository.UserRepository;
 import com.freelance.marketplace.repository.WalletRepository;
 import com.freelance.marketplace.security.JwtUtil;
-import com.freelance.marketplace.service.impl.AuthServiceImpl;
+import com.freelance.marketplace.service.auth.impl.AuthServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;

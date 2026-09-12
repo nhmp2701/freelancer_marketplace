@@ -1,10 +1,13 @@
 package com.freelance.marketplace.controller;
 
 import com.freelance.marketplace.config.SecurityConfig;
+import com.freelance.marketplace.dto.response.PageResponse;
+import com.freelance.marketplace.dto.response.JobResponse;
 import com.freelance.marketplace.security.JwtAuthenticationFilter;
 import com.freelance.marketplace.security.JwtUtil;
 import com.freelance.marketplace.service.job.JobCommandService;
 import com.freelance.marketplace.service.job.JobQueryService;
+import com.freelance.marketplace.service.proposal.ProposalService;
 import io.jsonwebtoken.JwtException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +21,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = JobController.class, properties = "app.cors.allowed-origins=http://localhost:5173")
+@WebMvcTest(controllers = {JobController.class, ProposalController.class}, properties = "app.cors.allowed-origins=http://localhost:5173")
 @Import({SecurityConfig.class, JwtAuthenticationFilter.class})
 class JobControllerSecurityTest {
 
@@ -38,6 +43,9 @@ class JobControllerSecurityTest {
     private JobCommandService jobCommandService;
 
     @MockitoBean
+    private ProposalService proposalService;
+
+    @MockitoBean
     private JwtUtil jwtUtil;
 
     @MockitoBean
@@ -45,10 +53,23 @@ class JobControllerSecurityTest {
 
     @Test
     void jobSearchIsPublic() throws Exception {
-        when(jobQueryService.searchJobs(any(), any(), any(), any(), any())).thenReturn(List.of());
+        when(jobQueryService.searchJobs(any(), any(), any(), any(), any(), anyInt(), anyInt(), anyString(), anyString()))
+                .thenReturn(PageResponse.<JobResponse>builder().content(List.of()).build());
 
         mockMvc.perform(get("/api/v1/jobs"))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void invalidJobPageSizeReturnsBadRequest() throws Exception {
+        mockMvc.perform(get("/api/v1/jobs").queryParam("size", "101"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void negativeBudgetReturnsBadRequest() throws Exception {
+        mockMvc.perform(get("/api/v1/jobs").queryParam("minBudget", "-1"))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -60,6 +81,12 @@ class JobControllerSecurityTest {
     @Test
     void personalJobListRequiresAuthentication() throws Exception {
         mockMvc.perform(get("/api/v1/jobs/me/posted"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void jobProposalsRequireAuthentication() throws Exception {
+        mockMvc.perform(get("/api/v1/jobs/1/proposals"))
                 .andExpect(status().isUnauthorized());
     }
 

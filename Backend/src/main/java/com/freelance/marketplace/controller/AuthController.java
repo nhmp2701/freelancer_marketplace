@@ -4,7 +4,7 @@ import com.freelance.marketplace.dto.request.LoginRequest;
 import com.freelance.marketplace.dto.request.RegisterRequest;
 import com.freelance.marketplace.dto.response.AuthResponse;
 import com.freelance.marketplace.dto.response.LoginResponse;
-import com.freelance.marketplace.service.AuthService;
+import com.freelance.marketplace.service.auth.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

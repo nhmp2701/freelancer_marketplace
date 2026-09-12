@@ -1,4 +1,4 @@
-package com.freelance.marketplace.service.impl;
+package com.freelance.marketplace.service.auth.impl;
 
 import com.freelance.marketplace.dto.request.LoginRequest;
 import com.freelance.marketplace.dto.request.RegisterRequest;
@@ -12,7 +12,7 @@ import com.freelance.marketplace.exception.DuplicateEmailException;
 import com.freelance.marketplace.repository.UserRepository;
 import com.freelance.marketplace.repository.WalletRepository;
 import com.freelance.marketplace.security.JwtUtil;
-import com.freelance.marketplace.service.AuthService;
+import com.freelance.marketplace.service.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
