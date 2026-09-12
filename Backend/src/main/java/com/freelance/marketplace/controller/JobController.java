@@ -4,7 +4,8 @@ import com.freelance.marketplace.dto.request.CreateJobRequest;
 import com.freelance.marketplace.dto.request.UpdateJobRequest;
 import com.freelance.marketplace.dto.response.JobResponse;
 import com.freelance.marketplace.enums.JobStatus;
-import com.freelance.marketplace.service.job.JobService;
+import com.freelance.marketplace.service.job.JobCommandService;
+import com.freelance.marketplace.service.job.JobQueryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JobController {
 
-    private final JobService jobService;
+    private final JobCommandService jobCommandService;
+    private final JobQueryService jobQueryService;
 
     // API công khai: tìm kiếm job
     @GetMapping
@@ -30,13 +32,13 @@ public class JobController {
             @RequestParam(required = false) BigDecimal maxBudget,
             @RequestParam(required = false) String skill,
             @RequestParam(required = false) String keyword) {
-        return ResponseEntity.ok(jobService.searchJobs(status, minBudget, maxBudget, skill, keyword));
+        return ResponseEntity.ok(jobQueryService.searchJobs(status, minBudget, maxBudget, skill, keyword));
     }
 
     // API công khai: xem chi tiết job
     @GetMapping("/{id}")
     public ResponseEntity<JobResponse> getJob(@PathVariable Long id) {
-        return ResponseEntity.ok(jobService.getJobById(id));
+        return ResponseEntity.ok(jobQueryService.getJobById(id));
     }
 
     // Client đăng job
@@ -44,7 +46,7 @@ public class JobController {
     public ResponseEntity<JobResponse> createJob(
             Authentication authentication,
             @Valid @RequestBody CreateJobRequest request) {
-        JobResponse response = jobService.createJob(authentication.getName(), request);
+        JobResponse response = jobCommandService.createJob(authentication.getName(), request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -54,7 +56,7 @@ public class JobController {
             Authentication authentication,
             @PathVariable Long id,
             @Valid @RequestBody UpdateJobRequest request) {
-        return ResponseEntity.ok(jobService.updateJob(authentication.getName(), id, request));
+        return ResponseEntity.ok(jobCommandService.updateJob(authentication.getName(), id, request));
     }
 
     // Client hủy job
@@ -62,19 +64,19 @@ public class JobController {
     public ResponseEntity<Void> cancelJob(
             Authentication authentication,
             @PathVariable Long id) {
-        jobService.cancelJob(authentication.getName(), id);
+        jobCommandService.cancelJob(authentication.getName(), id);
         return ResponseEntity.noContent().build();
     }
 
     // Client xem job mình đã đăng
     @GetMapping("/me/posted")
     public ResponseEntity<List<JobResponse>> getMyPostedJobs(Authentication authentication) {
-        return ResponseEntity.ok(jobService.getMyPostedJobs(authentication.getName()));
+        return ResponseEntity.ok(jobQueryService.getMyPostedJobs(authentication.getName()));
     }
 
     // Freelancer xem job mình đã nhận
     @GetMapping("/me/accepted")
     public ResponseEntity<List<JobResponse>> getMyAcceptedJobs(Authentication authentication) {
-        return ResponseEntity.ok(jobService.getMyAcceptedJobs(authentication.getName()));
+        return ResponseEntity.ok(jobQueryService.getMyAcceptedJobs(authentication.getName()));
     }
 }

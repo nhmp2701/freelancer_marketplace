@@ -1,6 +1,6 @@
 # Hiện trạng và mục tiêu dự án Freelancer Marketplace
 
-> Cập nhật: 2026-09-11  
+> Cập nhật: 2026-09-12
 > Nguồn đánh giá: mã nguồn hiện tại, lịch sử Git, CodeGraph và kết quả chạy test cục bộ.
 
 ## 1. Tóm tắt điều hành
@@ -57,6 +57,8 @@ Controller -> Service interface -> Service implementation -> Repository -> Postg
 ```
 
 CodeGraph xác nhận các luồng chính đi từ `AuthController`, `UserProfileController`, `UserSkillController`, `JobController` tới các service và repository tương ứng.
+
+Miền job hiện chia thành `JobCommandService` (tạo/sửa/hủy) và `JobQueryService` (tìm/xem/danh sách cá nhân). `JobMapper` và `SkillResolver` giữ phần dùng chung; `SkillResolver` cũng phục vụ luồng kỹ năng người dùng để quy tắc chuẩn hóa không bị phân tán.
 
 ## 4. Phần backend đã có
 
@@ -175,6 +177,7 @@ Các file cấu hình root, `.env.example`, README và `.gitignore` đã đượ
 ### Security/configuration đã ổn định cho Foundation MVP
 
 - JWT secret là biến môi trường bắt buộc; SQL logging chỉ bật trong profile `dev`.
+- Local/dev có thể chạy không cần khai báo JWT secret nhờ khóa HS256 tạm thời sinh an toàn trong bộ nhớ. Profile `prod` bắt buộc `JWT_SECRET` tối thiểu 32 byte và từ chối khởi động khi cấu hình sai.
 - Token sai/hết hạn/user đã bị xóa trả 401; lỗi 500 không lộ message nội bộ.
 - Lỗi chính đã map sang 400/401/403/404/409 và có test.
 - Danh sách/chi tiết job là public, route cá nhân vẫn cần JWT.

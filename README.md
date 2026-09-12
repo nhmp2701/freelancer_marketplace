@@ -15,13 +15,14 @@ Yêu cầu: Java 21 và Docker Desktop/Docker Compose.
 Copy-Item .env.example .env
 docker compose --env-file .env -f Backend/docker-compose.yml up -d
 $env:POSTGRES_PASSWORD = 'change-me'
+# Tùy chọn ở local; bỏ qua để dùng khóa tạm thời được sinh an toàn.
 $env:JWT_SECRET = 'replace-with-a-local-secret-of-at-least-32-bytes'
 $env:CORS_ALLOWED_ORIGINS = 'http://localhost:5173'
 Set-Location Backend
 .\mvnw.cmd spring-boot:run
 ```
 
-API mặc định kết nối PostgreSQL tại `localhost:5433`. Giá trị `POSTGRES_PASSWORD` và `JWT_SECRET` là bắt buộc khi chạy backend. Không dùng giá trị trong `.env.example` cho production.
+API mặc định kết nối PostgreSQL tại `localhost:5433`; `POSTGRES_PASSWORD` vẫn bắt buộc. Ở local/dev, nếu thiếu `JWT_SECRET`, backend tự sinh khóa HS256 an toàn trong bộ nhớ nên token cũ sẽ hết hiệu lực sau mỗi lần restart. Ở production, phải bật profile `prod` và cung cấp `JWT_SECRET` tối thiểu 32 byte; ứng dụng sẽ từ chối khởi động nếu secret thiếu hoặc yếu. Không dùng giá trị mẫu trong `.env.example` cho production.
 
 ## Chạy test
 

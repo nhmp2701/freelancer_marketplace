@@ -1,6 +1,6 @@
 # Hướng phát triển tiếp theo
 
-> Cập nhật: 2026-09-11  
+> Cập nhật: 2026-09-12
 > Nguyên tắc: ưu tiên một luồng end-to-end chạy được; chưa xây abstraction hoặc module chưa có use case thực tế.
 
 ## 1. Đích đến
@@ -36,6 +36,8 @@ Mục tiêu: repository sạch, cấu hình an toàn và API hiện tại có h�
 - [x] Hoàn tất layout làm việc với backend trong `Backend/`; phục hồi/cập nhật `.gitignore`; xác nhận `.env` và `target/` bị bỏ qua. Việc ghi nhận rename sạch trong lịch sử sẽ hoàn tất khi chủ dự án stage/commit worktree hiện tại.
 - [x] Chuẩn hóa lệnh chạy từ root và cập nhật `README.md` với prerequisites, Docker, env và test.
 - [x] Đưa JWT secret ra biến môi trường bắt buộc; tách logging SQL sang development profile.
+- [x] Hoàn thiện JWT theo môi trường: local/dev tự sinh khóa tạm thời an toàn; profile `prod` fail-fast nếu thiếu secret hoặc secret dưới 32 byte.
+- [x] Tách service job theo command/query, gom mapping DTO và phân giải skill dùng chung để tìm luồng code theo use case.
 - [x] Chuẩn hóa lỗi 400/401/403/404/409; không trả message exception nội bộ ở lỗi 500.
 - [x] Xử lý token thiếu/sai/hết hạn và token của user không còn tồn tại thành 401 ổn định.
 - [x] Cho phép public `GET /api/v1/jobs` và `GET /api/v1/jobs/{id}`; giữ các route `/me/*` yêu cầu JWT.

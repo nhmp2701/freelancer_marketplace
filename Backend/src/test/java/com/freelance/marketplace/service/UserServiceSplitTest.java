@@ -10,6 +10,7 @@ import com.freelance.marketplace.repository.SkillRepository;
 import com.freelance.marketplace.repository.UserRepository;
 import com.freelance.marketplace.service.profile.impl.UserProfileServiceImpl;
 import com.freelance.marketplace.service.skill.impl.UserSkillServiceImpl;
+import com.freelance.marketplace.service.skill.SkillResolver;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -61,7 +62,7 @@ class UserServiceSplitTest {
         when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
         when(skillRepository.findByNameIgnoreCase("Java")).thenReturn(Optional.of(skill));
 
-        UserSkillServiceImpl service = new UserSkillServiceImpl(userRepository, skillRepository);
+        UserSkillServiceImpl service = new UserSkillServiceImpl(userRepository, new SkillResolver(skillRepository));
         service.addSkillToUser(user.getEmail(), request);
         assertThat(user.getSkills()).containsExactly(skill);
 

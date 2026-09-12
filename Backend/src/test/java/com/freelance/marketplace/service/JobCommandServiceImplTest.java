@@ -5,9 +5,10 @@ import com.freelance.marketplace.entity.Job;
 import com.freelance.marketplace.entity.User;
 import com.freelance.marketplace.enums.JobStatus;
 import com.freelance.marketplace.repository.JobRepository;
-import com.freelance.marketplace.repository.SkillRepository;
 import com.freelance.marketplace.repository.UserRepository;
-import com.freelance.marketplace.service.job.impl.JobServiceImpl;
+import com.freelance.marketplace.service.job.JobMapper;
+import com.freelance.marketplace.service.job.impl.JobCommandServiceImpl;
+import com.freelance.marketplace.service.skill.SkillResolver;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.access.AccessDeniedException;
 
@@ -17,12 +18,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class JobServiceImplTest {
+class JobCommandServiceImplTest {
 
     private final JobRepository jobRepository = mock(JobRepository.class);
     private final UserRepository userRepository = mock(UserRepository.class);
-    private final SkillRepository skillRepository = mock(SkillRepository.class);
-    private final JobServiceImpl service = new JobServiceImpl(jobRepository, userRepository, skillRepository);
+    private final SkillResolver skillResolver = mock(SkillResolver.class);
+    private final JobMapper jobMapper = mock(JobMapper.class);
+    private final JobCommandServiceImpl service = new JobCommandServiceImpl(
+            jobRepository, userRepository, skillResolver, jobMapper);
 
     @Test
     void rejectsUpdateByNonOwner() {

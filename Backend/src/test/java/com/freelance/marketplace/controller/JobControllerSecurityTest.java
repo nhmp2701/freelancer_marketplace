@@ -3,7 +3,8 @@ package com.freelance.marketplace.controller;
 import com.freelance.marketplace.config.SecurityConfig;
 import com.freelance.marketplace.security.JwtAuthenticationFilter;
 import com.freelance.marketplace.security.JwtUtil;
-import com.freelance.marketplace.service.job.JobService;
+import com.freelance.marketplace.service.job.JobCommandService;
+import com.freelance.marketplace.service.job.JobQueryService;
 import io.jsonwebtoken.JwtException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,10 @@ class JobControllerSecurityTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private JobService jobService;
+    private JobQueryService jobQueryService;
+
+    @MockitoBean
+    private JobCommandService jobCommandService;
 
     @MockitoBean
     private JwtUtil jwtUtil;
@@ -41,7 +45,7 @@ class JobControllerSecurityTest {
 
     @Test
     void jobSearchIsPublic() throws Exception {
-        when(jobService.searchJobs(any(), any(), any(), any(), any())).thenReturn(List.of());
+        when(jobQueryService.searchJobs(any(), any(), any(), any(), any())).thenReturn(List.of());
 
         mockMvc.perform(get("/api/v1/jobs"))
                 .andExpect(status().isOk());

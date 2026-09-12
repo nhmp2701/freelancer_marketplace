@@ -2,7 +2,7 @@ spring:
     datasource:
         url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB:freelance_db}
         username: ${POSTGRES_USER:postgres}
-        password: ${POSTGRES_PASSWORD}
+        password: 123456
         driver-class-name: org.postgresql.Driver
 
     jpa:
@@ -19,7 +19,7 @@ spring:
         baseline-version: 0
 
 jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:}
     expiration: ${JWT_EXPIRATION_MS:86400000}
 
 app:

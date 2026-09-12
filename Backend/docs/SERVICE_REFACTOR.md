@@ -64,3 +64,10 @@ Profile và skill đã được expose qua controller/API, lấy danh tính ngư
 1. Bổ sung integration test cho transaction rollback và repository query bằng PostgreSQL tự cô lập.
 2. Thêm test nhánh tạo skill mới, skill trùng khác hoa/thường và xóa skill không tồn tại.
 3. Tách mapper hoặc token abstraction chỉ khi xuất hiện use case thứ hai; hiện tại chưa cần thêm lớp trung gian.
+
+## Bổ sung ngày 2026-09-12 — miền Job
+
+- Tách `JobService` đa trách nhiệm thành `JobCommandService` và `JobQueryService` theo use case ghi/đọc.
+- Đưa mapping `Job -> JobResponse` vào `JobMapper`, dùng chung cho cả hai service.
+- Đưa quy tắc trim/find-or-create skill vào `SkillResolver`, dùng chung cho job và kỹ năng người dùng.
+- Giữ transaction ghi ở command service và transaction `readOnly` ở query service; không thêm framework CQRS hay tầng kiến trúc mới.
