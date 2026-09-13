@@ -1,204 +1,68 @@
-# Hiện trạng và mục tiêu dự án Freelancer Marketplace
+# Hiện trạng dự án Freelancer Marketplace
 
-> Cập nhật: 2026-09-12
-> Nguồn đánh giá: mã nguồn hiện tại, lịch sử Git, CodeGraph và kết quả chạy test cục bộ.
+> Cập nhật: 2026-09-13
+> Nguồn đánh giá: mã nguồn hiện tại, CodeGraph, build/test và smoke test trình duyệt với PostgreSQL local.
 
-## 1. Tóm tắt điều hành
+## Tóm tắt
 
-Dự án đang ở giai đoạn **backend nền tảng + prototype UX/UI**, chưa phải một sản phẩm end-to-end có thể sử dụng thực tế.
+Dự án đang ở trạng thái **backend marketplace nền tảng + frontend mới đã kết nối lại một phần**.
 
-- Backend Spring Boot đã có đăng ký, đăng nhập JWT, hồ sơ, kỹ năng và các thao tác cơ bản với công việc.
-- Frontend hiện là **18 trang HTML prototype tĩnh** trong `Frontend/ux-ui-demo`; giao diện và luồng điều hướng đã khá đầy đủ nhưng chưa có ứng dụng frontend thực, chưa gọi API và chưa quản lý trạng thái đăng nhập.
-- Backend đã có proposal và chọn freelancer nguyên tử; các phần bàn giao, escrow, giao dịch, chat, đánh giá, tranh chấp và quản trị chưa có.
-- Backend build thành công và 30/30 test pass; test unit/MVC hiện tại không phụ thuộc PostgreSQL local.
-- Cấu trúc làm việc đã đặt backend trong `Backend/`, có cấu hình Git/env ở root; việc di chuyển chưa được stage/commit nên Git vẫn hiển thị backend cũ bị xóa và `Backend/` là thư mục mới.
+- Backend Spring Boot có auth JWT, hồ sơ/kỹ năng, job và proposal/chọn freelancer.
+- Frontend mới trong `Frontend/` dùng React 19, TypeScript và Vite. Các contract auth, danh sách/chi tiết/tạo job, hồ sơ công khai và gửi proposal đã khớp backend.
+- Frontend mới chưa khôi phục toàn bộ capability của frontend trước: cập nhật hồ sơ/kỹ năng, sửa/hủy/job của tôi, danh sách/quản lý proposal và chọn freelancer chưa có UI hoàn chỉnh.
+- Trang ví hiện chỉ là giao diện: backend chưa có API `/wallet`, transaction, nạp hoặc rút tiền. Không được xem đây là capability đã kết nối.
+- Tin nhắn, bàn giao/nghiệm thu, thanh toán/escrow, đánh giá, tranh chấp và admin vẫn chưa hoàn chỉnh end-to-end.
 
-## 2. Mục tiêu sản phẩm hiện tại
+## Kết nối frontend/backend đã xác minh
 
-Tên và nội dung prototype cho thấy sản phẩm hướng tới một nền tảng freelance Việt Nam mang tên **Freelancer Marketplace**, kết nối khách hàng với freelancer, tập trung vào tính minh bạch và an toàn giao dịch.
-
-### Mục tiêu MVP đề xuất
-
-Cho phép hoàn thành một vòng đời công việc tối thiểu:
-
-```text
-Đăng ký/đăng nhập
-  -> tạo hoặc tìm công việc
-  -> gửi proposal
-  -> khách hàng chọn freelancer
-  -> trao đổi và bàn giao
-  -> khách hàng nghiệm thu
-  -> ghi nhận thanh toán
-  -> hai bên đánh giá
-```
-
-Mục tiêu backend gần nhất là hoàn thiện vòng đời `IN_PROGRESS` → `SUBMITTED` → `COMPLETED`; song song, frontend có thể nối auth, profile, job và proposal đã có.
-
-> Đây là mục tiêu được suy ra từ mã nguồn và prototype vì repository chưa có product specification chính thức.
-
-## 3. Kiến trúc hiện tại
-
-| Khu vực | Công nghệ/cấu trúc | Trạng thái |
-|---|---|---|
-| Backend | Java 21, Spring Boot 4.1.1, Spring MVC, Spring Data JPA, Spring Security | Có thể build/chạy |
-| Xác thực | JWT, BCrypt, stateless security filter | Đã có luồng cơ bản |
-| Database | PostgreSQL 15 qua Docker Compose, Flyway migration | Có schema users, wallets, skills, jobs, proposals và lịch sử trạng thái job; migration tới `V3` |
-| Frontend | HTML + Tailwind CDN + JavaScript nội tuyến | Chỉ là prototype tĩnh |
-| Kiểm thử | JUnit/Spring Boot Test/Mockito/MockMvc | 8 file test, tổng 30 test |
-| Migration | Flyway | Baseline version `0`, schema version `3` |
-| CI/CD | Chưa thấy cấu hình | Chưa có |
-
-Backend đang theo cấu trúc quen thuộc:
-
-```text
-Controller -> Service interface -> Service implementation -> Repository -> PostgreSQL
-                  |
-                  +-> DTO / Entity / Security / Exception
-```
-
-CodeGraph xác nhận các luồng chính đi từ `AuthController`, `UserProfileController`, `UserSkillController`, `JobController` tới các service và repository tương ứng.
-
-Miền job hiện chia thành `JobCommandService` (tạo/sửa/hủy) và `JobQueryService` (tìm/xem/danh sách cá nhân). `JobMapper` và `SkillResolver` giữ phần dùng chung; `SkillResolver` cũng phục vụ luồng kỹ năng người dùng để quy tắc chuẩn hóa không bị phân tán.
-
-## 4. Phần backend đã có
-
-### Domain hiện hữu
-
-- `User`: email, mật khẩu băm, tên, avatar, bio, reputation, role, status, skills và wallet.
-- `Skill`: danh mục kỹ năng dùng chung cho user và job.
-- `Wallet`: số dư khả dụng, số dư bị khóa và optimistic-lock version.
-- `Job`: client, freelancer, tiêu đề, mô tả, ngân sách, deadline, kỹ năng và trạng thái.
-- `JobStatus`: `OPEN`, `IN_PROGRESS`, `SUBMITTED`, `COMPLETED`, `CANCELLED`, `DISPUTED`.
-- `Role`: mới có `USER` và `ADMIN`; chưa tách cứng client/freelancer. Cách này có thể phù hợp nếu một user được phép đóng cả hai vai trò.
-
-### API hiện hữu
-
-| API | Mức hoàn thiện |
+| Luồng | Trạng thái |
 |---|---|
-| `POST /api/v1/auth/register` | Tạo user, tạo wallet, trả JWT |
-| `POST /api/v1/auth/login` | Kiểm tra mật khẩu/trạng thái, trả JWT |
-| `GET /api/v1/users/{userId}` | Xem profile công khai |
-| `PUT /api/v1/users/me` | Cập nhật profile của chính user |
-| `POST /api/v1/users/me/skills` | Thêm kỹ năng |
-| `DELETE /api/v1/users/me/skills/{skillName}` | Gỡ kỹ năng |
-| `GET /api/v1/jobs` | Tìm job theo status, budget, skill, keyword |
-| `GET /api/v1/jobs/{id}` | Xem chi tiết job |
-| `POST /api/v1/jobs` | Tạo job ở trạng thái `OPEN` |
-| `PUT /api/v1/jobs/{id}` | Chủ job sửa khi còn `OPEN` |
-| `DELETE /api/v1/jobs/{id}` | Chủ job chuyển trạng thái sang `CANCELLED` |
-| `GET /api/v1/jobs/me/posted` | Danh sách job đã đăng |
-| `GET /api/v1/jobs/me/accepted` | Danh sách job đã nhận |
-| `POST /api/v1/jobs/{jobId}/proposals` | Freelancer gửi proposal vào job `OPEN` |
-| `PUT /api/v1/proposals/{id}` | Chủ proposal sửa khi còn `PENDING` và job còn `OPEN` |
-| `DELETE /api/v1/proposals/{id}` | Chủ proposal rút proposal |
-| `GET /api/v1/proposals/me` | Danh sách proposal của freelancer, có pagination |
-| `GET /api/v1/jobs/{jobId}/proposals` | Chủ job xem proposal, có pagination |
-| `POST /api/v1/proposals/{id}/accept` | Chủ job chọn freelancer và chuyển job sang `IN_PROGRESS` |
+| Đăng ký, đăng nhập, lưu phiên trong tab | Đã kết nối |
+| Danh sách và chi tiết job | Đã kết nối, dùng dữ liệu API thật |
+| Tạo job | Đã kết nối; skills và deadline đã đúng contract backend |
+| Gửi proposal | Đã kết nối qua `POST /jobs/{id}/proposals`; có bid, cover letter và delivery days |
+| Xem hồ sơ hiện tại | Đã kết nối qua public profile `GET /users/{id}` |
+| Cập nhật hồ sơ/kỹ năng | Chưa có trong frontend mới |
+| Sửa, hủy, xem job đã đăng/đã nhận | Chưa có trong frontend mới |
+| Quản lý/chấp nhận proposal | Backend có, frontend mới chưa có |
+| Ví/giao dịch/nạp/rút | Backend chưa có API; frontend chưa thể kết nối |
 
-### Giới hạn của lifecycle hiện tại
+Frontend không còn dùng dữ liệu demo để che lỗi tải job. API client hiện xử lý cả response rỗng và lỗi validation dạng field-map của backend.
 
-Mặc dù entity đã có `freelancer` và nhiều trạng thái, code chưa có use case để:
+## Backend hiện có
 
-- freelancer bàn giao và chuyển sang `SUBMITTED`;
-- client nghiệm thu hoặc mở tranh chấp;
-- chuyển tiền escrow;
-- đánh giá sau hoàn thành.
+- Java 21, Spring Boot 4.1.1, Spring Security, Spring Data JPA.
+- PostgreSQL 15 qua Docker Compose; Flyway tới schema `V3`.
+- API auth, user profile/skills, tìm/tạo/sửa/hủy job, job cá nhân, CRUD proposal và accept proposal.
+- Job lifecycle đã tới `IN_PROGRESS`; chưa có use case bàn giao `SUBMITTED` và nghiệm thu `COMPLETED` hoàn chỉnh.
+- Mật khẩu PostgreSQL trong `application.yml` đã chuyển sang biến môi trường bắt buộc, không còn giá trị cố định trong source.
 
-`getMyAcceptedJobs` hiện đã có dữ liệu từ use case accept proposal thật. Transition tiếp theo chưa có là bàn giao và nghiệm thu.
+## Xác minh gần nhất
 
-## 5. Phần frontend prototype đã có
-
-Prototype bao phủ hầu hết tầm nhìn sản phẩm:
-
-| Nhóm | Trang |
-|---|---|
-| Public/Auth | `index.html`, `register.html`, `login.html` |
-| Freelancer/Client | `jobs.html`, `job-detail.html`, `post-project.html`, `profile.html`, `invite.html`, `messages.html` |
-| Ví | `wallet.html`, `deposit.html`, `withdraw.html`, `statement.html` |
-| Admin | `admin.html`, `admin-users.html`, `admin-projects.html`, `admin-transactions.html`, `admin-disputes.html` |
-
-Prototype có hệ màu, typography và mẫu màn hình tương đối nhất quán; thư mục Stitch còn lưu ảnh tham chiếu và `DESIGN.md`.
-
-Tuy nhiên đây chưa phải frontend triển khai:
-
-- không có `package.json`, framework, router hoặc build pipeline;
-- không có `fetch`, Axios, WebSocket hay API client;
-- dữ liệu người dùng, công việc, giao dịch và tin nhắn đều là dữ liệu mẫu viết trong HTML;
-- form đăng nhập/đăng ký chưa submit tới backend;
-- các nút chính chỉ đổi trang hoặc hiển thị `alert` giả lập;
-- Tailwind và font/icon được tải từ CDN;
-- nhiều đoạn JavaScript điều hướng được lặp lại ở từng file.
-
-## 6. Ma trận khớp giữa prototype và backend
-
-| Năng lực trong UI | Backend | Khoảng trống |
-|---|---|---|
-| Đăng ký/đăng nhập | Có | Cần nối frontend, xử lý token và lỗi |
-| Hồ sơ/kỹ năng | Có một phần | Thiếu portfolio, lịch sử việc, review |
-| Tìm/xem job | Có | Public, có filter, pagination, sort và validation khoảng budget |
-| Đăng/sửa/hủy job | Có | Thiếu frontend thực và test authorization |
-| Proposal/lời mời | Có proposal | Đã tạo/sửa/rút/xem/chấp nhận; lời mời chưa có |
-| Tin nhắn | Chưa có | Cần conversation/message + realtime hoặc polling |
-| Ví/sao kê | Chỉ có entity wallet | Thiếu ledger, transaction, deposit/withdraw |
-| Escrow/thanh toán | Chưa có | Cần thiết kế an toàn tiền và idempotency |
-| Đánh giá | Chưa có | Cần review domain và cập nhật reputation |
-| Tranh chấp | Chưa có | Cần dispute workflow và audit trail |
-| Admin | Chưa có | Cần authorization `ADMIN`, API và audit |
-
-## 7. Chất lượng và khả năng chạy
-
-Kết quả kiểm tra ngày 2026-09-11:
+Ngày 2026-09-13:
 
 ```text
-Backend/.\mvnw.cmd test
-BUILD SUCCESS
-Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+Frontend: npm run build
+PASS - TypeScript và Vite production build
+
+Browser smoke với backend/PostgreSQL local
+PASS - register -> jobs -> job detail -> create job -> public profile -> submit proposal
+
+Backend: .\mvnw.cmd test
+PASS - 30 tests, 0 failures, 0 errors, 0 skipped
 ```
 
-Điểm tích cực:
+Smoke test tạo dữ liệu local phục vụ kiểm chứng (user, job và proposal); không tác động môi trường production.
 
-- application khởi động được với PostgreSQL 15.19 local;
-- Flyway migration tới `V3` chạy thành công và Hibernate `validate` schema;
-- service đã bắt đầu được tách theo trách nhiệm auth/profile/skill/job;
-- thao tác sửa/hủy job có kiểm tra chủ sở hữu và trạng thái `OPEN`;
-- auth, mapping lỗi, quyền truy cập job và JWT lỗi đã có test hồi quy;
-- smoke test xác nhận job công khai trả `200`, route job cá nhân trả `401` khi không có JWT.
+## Cấu hình repository
 
-Hạn chế:
+- Giữ `.gitignore`, `.gitattributes` và `.env.example` ở root làm cấu hình chuẩn của monorepo.
+- Đã xóa `Backend/.gitignore` và `Backend/.gitattributes` vì cấu hình root đã bao phủ toàn repository.
+- `.env` local đã được chuyển từ `Backend/` về root và vẫn bị Git bỏ qua. Docker Compose được chạy từ root với `--env-file .env` như hướng dẫn trong README.
+- Giữ `Backend/docker-compose.yml`; đây là file compose duy nhất hiện có.
 
-- chưa có integration test repository/database tự cô lập bằng Testcontainers;
-- chưa test token JWT hết hạn bằng đồng hồ kiểm soát được và chưa có refresh/revocation;
-- chưa có OpenAPI/API contract và chuẩn response chung; job/proposal đã có pagination;
-- chưa có kiểm tra frontend vì chưa có frontend application.
+## Việc sẵn sàng kế tiếp
 
-## 8. Rủi ro cần xử lý sớm
-
-### P0 — Cần hoàn tất ghi nhận Git layout
-
-Các file cấu hình root, `.env.example`, README và `.gitignore` đã được chuẩn hóa; `.env` và build artifact không được track. Tuy nhiên worktree chưa được stage/commit nên Git vẫn ghi backend cũ ở root là deleted và `Backend/` là untracked. Cần review rồi stage toàn bộ thay đổi cùng lúc để Git nhận diện rename tốt nhất.
-
-### Security/configuration đã ổn định cho Foundation MVP
-
-- JWT secret là biến môi trường bắt buộc; SQL logging chỉ bật trong profile `dev`.
-- Local/dev có thể chạy không cần khai báo JWT secret nhờ khóa HS256 tạm thời sinh an toàn trong bộ nhớ. Profile `prod` bắt buộc `JWT_SECRET` tối thiểu 32 byte và từ chối khởi động khi cấu hình sai.
-- Token sai/hết hạn/user đã bị xóa trả 401; lỗi 500 không lộ message nội bộ.
-- Lỗi chính đã map sang 400/401/403/404/409 và có test.
-- Danh sách/chi tiết job là public, route cá nhân vẫn cần JWT.
-- CORS đọc danh sách origin từ biến môi trường.
-
-### P0 — Tính đúng đắn nghiệp vụ
-
-- trạng thái job tồn tại nhưng chưa có state machine/use case để chuyển trạng thái hợp lệ;
-- wallet chỉ giữ balance, chưa có ledger bất biến để đối soát;
-- chưa có idempotency/audit cho các thao tác tiền;
-- tên skill đã được trim và tra cứu không phân biệt hoa/thường; vẫn có thể gặp race khi hai transaction đồng thời tạo cùng skill.
-
-### P1 — Dữ liệu và bảo trì
-
-- các danh sách job cá nhân vẫn trả toàn bộ dữ liệu, chưa pagination;
-- validation response và error response chưa có một envelope thống nhất;
-- chưa có CI và database test tự dựng/tự dọn.
-
-## 9. Kết luận trạng thái
-
-Dự án đã có backend từ auth tới job → proposal → chọn freelancer, schema ở `V3` và 30 test hồi quy đều pass. Khoảng trống backend lớn nhất tiếp theo là **bàn giao → nghiệm thu**, sau đó mới tới review và ledger/escrow; frontend có thể bắt đầu nối vào các API hiện hữu.
+1. Khôi phục UI quản lý proposal và chọn freelancer dựa trên API backend đã có.
+2. Hoàn thiện backend + UI cho bàn giao và nghiệm thu.
+3. Chỉ triển khai wallet sau khi có ledger, transaction và quy tắc idempotency/audit.

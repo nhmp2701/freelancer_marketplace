@@ -1,6 +1,17 @@
 # Hướng phát triển tiếp theo
 
-> Cập nhật: 2026-09-12
+> Điều chỉnh sau khi thay toàn bộ frontend (2026-09-13): các checkbox Phase 1 cũ bên dưới là kết quả của frontend trước và không còn đại diện đầy đủ cho UI hiện tại. Checklist nguồn cho frontend mới là:
+>
+> - [x] Auth: đăng ký, đăng nhập, đăng xuất và phiên trong tab.
+> - [x] Job: danh sách, chi tiết và tạo job bằng API thật.
+> - [x] Proposal: gửi proposal bằng API thật.
+> - [x] Profile: xem hồ sơ hiện tại qua API thật.
+> - [ ] Profile: cập nhật thông tin và thêm/gỡ kỹ năng.
+> - [ ] Job: sửa, hủy, danh sách đã đăng và đã nhận.
+> - [ ] Proposal: danh sách, sửa/rút và client chấp nhận proposal.
+> - [ ] Wallet: chờ backend ledger/transaction API; UI hiện tại chưa được xem là đã kết nối.
+
+> Cập nhật: 2026-09-13
 > Nguyên tắc: ưu tiên một luồng end-to-end chạy được; chưa xây abstraction hoặc module chưa có use case thực tế.
 
 ## 1. Đích đến
@@ -72,19 +83,19 @@ Mục tiêu: thay prototype điều hướng giả bằng một ứng dụng g�
 
 #### 1.1. Chốt nền frontend
 
-- [ ] Chọn một SPA stack TypeScript phù hợp cách deploy; với phạm vi hiện tại, một React/Vite app là đủ, chưa cần SSR.
-- [ ] Trích design token, layout và component dùng chung từ `ux-ui-demo`; giữ prototype làm reference, không tiếp tục sửa từng file HTML lặp.
-- [ ] Thiết lập router, API client, cấu hình environment và xử lý loading/error/empty state.
-- [ ] Thiết lập auth state và route guard; tránh lưu dữ liệu nhạy cảm ngoài nhu cầu tối thiểu.
+- [x] Chọn một SPA stack TypeScript phù hợp cách deploy; đã tạo React/Vite app, chưa thêm SSR.
+- [x] Trích design token, layout và component dùng chung từ `ux-ui-demo`; giữ prototype làm reference, không tiếp tục sửa từng file HTML lặp.
+- [x] Thiết lập router, API client, cấu hình environment và xử lý loading/error/empty state.
+- [x] Thiết lập auth state và route guard; phiên chỉ lưu trong `sessionStorage`, không lưu mật khẩu hoặc dữ liệu nhạy cảm khác.
 
 #### 1.2. Vertical slice theo thứ tự
 
-- [ ] Đăng ký → nhận token → vào ứng dụng.
-- [ ] Đăng nhập/đăng xuất → khôi phục phiên hợp lệ.
-- [ ] Xem/cập nhật profile và thêm/gỡ skill.
-- [ ] Danh sách job có filter, pagination và URL query.
-- [ ] Chi tiết job dùng dữ liệu API.
-- [ ] Đăng/sửa/hủy job và danh sách “job đã đăng”.
+- [x] Đăng ký → nhận token → vào ứng dụng.
+- [x] Đăng nhập/đăng xuất → khôi phục phiên hợp lệ trong tab hiện tại.
+- [x] Xem/cập nhật profile và thêm/gỡ skill.
+- [x] Danh sách job có filter, pagination và URL query.
+- [x] Chi tiết job dùng dữ liệu API.
+- [x] Đăng/sửa/hủy job và danh sách “job đã đăng”.
 
 Điều kiện hoàn thành:
 
