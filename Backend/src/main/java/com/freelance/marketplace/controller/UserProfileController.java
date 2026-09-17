@@ -14,20 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserProfileController {
 
-    private final UserProfileService userProfileService;
+  private final UserProfileService userProfileService;
 
-    // API công khai: xem profile của bất kỳ user nào theo ID
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable Long userId) {
-        return ResponseEntity.ok(userProfileService.getUserProfile(userId));
-    }
+  // API công khai: xem profile của bất kỳ user nào theo ID
+  @GetMapping("/{userId}")
+  public ResponseEntity<UserProfileResponse> getProfile(@PathVariable Long userId) {
+    return ResponseEntity.ok(userProfileService.getUserProfile(userId));
+  }
 
-    // API yêu cầu đăng nhập: cập nhật profile của chính mình
-    @PutMapping("/me")
-    public ResponseEntity<UserProfileResponse> updateProfile(
-            Authentication authentication,
-            @Valid @RequestBody UpdateProfileRequest request) {
-        String email = authentication.getName();
-        return ResponseEntity.ok(userProfileService.updateUserProfile(email, request));
-    }
+  // API yêu cầu đăng nhập: cập nhật profile của chính mình
+  @PutMapping("/me")
+  public ResponseEntity<UserProfileResponse> updateProfile(
+      Authentication authentication, @Valid @RequestBody UpdateProfileRequest request) {
+    String email = authentication.getName();
+    return ResponseEntity.ok(userProfileService.updateUserProfile(email, request));
+  }
 }

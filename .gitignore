@@ -2,6 +2,9 @@ HELP.md
 **/target/
 **/build/
 **/dist/
+**/docs/
+!docs/
+!docs/*.md
 **/node_modules/
 *.tsbuildinfo
 .playwright-cli/

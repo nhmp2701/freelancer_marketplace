@@ -1,40 +1,55 @@
-import type { Job } from '../../shared/types/domain'
+import type { Job } from "../../shared/types/domain";
 
 export const demoJobs: Job[] = [
   {
     id: 1,
-    title: 'Phát triển ứng dụng quản lý chi tiêu',
-    description: 'Xây dựng ứng dụng Flutter quản lý chi tiêu cá nhân trên iOS và Android, tích hợp REST API, OCR hóa đơn và biểu đồ trực quan.',
+    title: "Phát triển ứng dụng quản lý chi tiêu",
+    description:
+      "Xây dựng ứng dụng Flutter quản lý chi tiêu cá nhân trên iOS và Android, tích hợp REST API, OCR hóa đơn và biểu đồ trực quan.",
     budget: 25_000_000,
-    status: 'OPEN',
+    status: "OPEN",
     deadline: new Date(Date.now() + 30 * 86400000).toISOString(),
     createdAt: new Date(Date.now() - 86400000).toISOString(),
     clientId: 1,
-    clientName: 'TechFin Việt Nam',
-    skills: [{ id: 5, name: 'Flutter' }, { id: 8, name: 'REST API' }, { id: 6, name: 'UI/UX' }],
+    clientName: "TechFin Việt Nam",
+    skills: [
+      { id: 5, name: "Flutter" },
+      { id: 8, name: "REST API" },
+      { id: 6, name: "UI/UX" },
+    ],
   },
   {
     id: 2,
-    title: 'Xây dựng backend Spring Boot cho nền tảng giáo dục',
-    description: 'Thiết kế REST API, xác thực JWT, PostgreSQL và hệ thống phân quyền cho nền tảng học trực tuyến.',
+    title: "Xây dựng backend Spring Boot cho nền tảng giáo dục",
+    description:
+      "Thiết kế REST API, xác thực JWT, PostgreSQL và hệ thống phân quyền cho nền tảng học trực tuyến.",
     budget: 18_000_000,
-    status: 'OPEN',
+    status: "OPEN",
     deadline: new Date(Date.now() + 21 * 86400000).toISOString(),
     createdAt: new Date(Date.now() - 2 * 86400000).toISOString(),
     clientId: 1,
-    clientName: 'Edtech Next',
-    skills: [{ id: 1, name: 'Java' }, { id: 2, name: 'Spring Boot' }, { id: 7, name: 'PostgreSQL' }],
+    clientName: "Edtech Next",
+    skills: [
+      { id: 1, name: "Java" },
+      { id: 2, name: "Spring Boot" },
+      { id: 7, name: "PostgreSQL" },
+    ],
   },
   {
     id: 3,
-    title: 'Thiết kế landing page SaaS B2B',
-    description: 'Thiết kế và hiện thực landing page responsive, ưu tiên hiệu năng, chuyển đổi và khả năng truy cập.',
+    title: "Thiết kế landing page SaaS B2B",
+    description:
+      "Thiết kế và hiện thực landing page responsive, ưu tiên hiệu năng, chuyển đổi và khả năng truy cập.",
     budget: 8_000_000,
-    status: 'OPEN',
+    status: "OPEN",
     deadline: new Date(Date.now() + 14 * 86400000).toISOString(),
     createdAt: new Date(Date.now() - 3 * 86400000).toISOString(),
     clientId: 3,
-    clientName: 'Nova Cloud',
-    skills: [{ id: 3, name: 'React' }, { id: 4, name: 'TypeScript' }, { id: 6, name: 'UI/UX' }],
+    clientName: "Nova Cloud",
+    skills: [
+      { id: 3, name: "React" },
+      { id: 4, name: "TypeScript" },
+      { id: 6, name: "UI/UX" },
+    ],
   },
-]
+];

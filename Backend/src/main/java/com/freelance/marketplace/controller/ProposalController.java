@@ -18,43 +18,53 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 public class ProposalController {
-    private final ProposalService proposalService;
+  private final ProposalService proposalService;
 
-    @PostMapping("/jobs/{jobId}/proposals")
-    public ResponseEntity<ProposalResponse> create(Authentication authentication, @PathVariable Long jobId,
-                                                    @Valid @RequestBody CreateProposalRequest request) {
-        return new ResponseEntity<>(proposalService.create(authentication.getName(), jobId, request), HttpStatus.CREATED);
-    }
+  @PostMapping("/jobs/{jobId}/proposals")
+  public ResponseEntity<ProposalResponse> create(
+      Authentication authentication,
+      @PathVariable Long jobId,
+      @Valid @RequestBody CreateProposalRequest request) {
+    return new ResponseEntity<>(
+        proposalService.create(authentication.getName(), jobId, request), HttpStatus.CREATED);
+  }
 
-    @PutMapping("/proposals/{proposalId}")
-    public ResponseEntity<ProposalResponse> update(Authentication authentication, @PathVariable Long proposalId,
-                                                    @Valid @RequestBody UpdateProposalRequest request) {
-        return ResponseEntity.ok(proposalService.update(authentication.getName(), proposalId, request));
-    }
+  @PutMapping("/proposals/{proposalId}")
+  public ResponseEntity<ProposalResponse> update(
+      Authentication authentication,
+      @PathVariable Long proposalId,
+      @Valid @RequestBody UpdateProposalRequest request) {
+    return ResponseEntity.ok(proposalService.update(authentication.getName(), proposalId, request));
+  }
 
-    @DeleteMapping("/proposals/{proposalId}")
-    public ResponseEntity<Void> withdraw(Authentication authentication, @PathVariable Long proposalId) {
-        proposalService.withdraw(authentication.getName(), proposalId);
-        return ResponseEntity.noContent().build();
-    }
+  @DeleteMapping("/proposals/{proposalId}")
+  public ResponseEntity<Void> withdraw(
+      Authentication authentication, @PathVariable Long proposalId) {
+    proposalService.withdraw(authentication.getName(), proposalId);
+    return ResponseEntity.noContent().build();
+  }
 
-    @PostMapping("/proposals/{proposalId}/accept")
-    public ResponseEntity<ProposalResponse> accept(Authentication authentication, @PathVariable Long proposalId) {
-        return ResponseEntity.ok(proposalService.accept(authentication.getName(), proposalId));
-    }
+  @PostMapping("/proposals/{proposalId}/accept")
+  public ResponseEntity<ProposalResponse> accept(
+      Authentication authentication, @PathVariable Long proposalId) {
+    return ResponseEntity.ok(proposalService.accept(authentication.getName(), proposalId));
+  }
 
-    @GetMapping("/proposals/me")
-    public ResponseEntity<PageResponse<ProposalResponse>> getMine(
-            Authentication authentication, @RequestParam(defaultValue = "0") @Min(0) int page,
-            @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
-        return ResponseEntity.ok(proposalService.getMine(authentication.getName(), page, size));
-    }
+  @GetMapping("/proposals/me")
+  public ResponseEntity<PageResponse<ProposalResponse>> getMine(
+      Authentication authentication,
+      @RequestParam(defaultValue = "0") @Min(0) int page,
+      @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
+    return ResponseEntity.ok(proposalService.getMine(authentication.getName(), page, size));
+  }
 
-    @GetMapping("/jobs/{jobId}/proposals")
-    public ResponseEntity<PageResponse<ProposalResponse>> getForJob(
-            Authentication authentication, @PathVariable Long jobId,
-            @RequestParam(defaultValue = "0") @Min(0) int page,
-            @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
-        return ResponseEntity.ok(proposalService.getForOwnedJob(authentication.getName(), jobId, page, size));
-    }
+  @GetMapping("/jobs/{jobId}/proposals")
+  public ResponseEntity<PageResponse<ProposalResponse>> getForJob(
+      Authentication authentication,
+      @PathVariable Long jobId,
+      @RequestParam(defaultValue = "0") @Min(0) int page,
+      @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
+    return ResponseEntity.ok(
+        proposalService.getForOwnedJob(authentication.getName(), jobId, page, size));
+  }
 }

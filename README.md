@@ -24,6 +24,8 @@ Set-Location Backend
 
 API mặc định kết nối PostgreSQL tại `localhost:5433`; `POSTGRES_PASSWORD` vẫn bắt buộc. Ở local/dev, nếu thiếu `JWT_SECRET`, backend tự sinh khóa HS256 an toàn trong bộ nhớ nên token cũ sẽ hết hiệu lực sau mỗi lần restart. Ở production, phải bật profile `prod` và cung cấp `JWT_SECRET` tối thiểu 32 byte; ứng dụng sẽ từ chối khởi động nếu secret thiếu hoặc yếu. Không dùng giá trị mẫu trong `.env.example` cho production.
 
+Xem [hướng dẫn setup backend chi tiết](docs/BACKEND_SETUP.md) nếu cài lần đầu hoặc gặp lỗi `password authentication failed`.
+
 ## Chạy frontend local
 
 Yêu cầu: Node.js 20.19+ hoặc 22.12+.
@@ -36,6 +38,22 @@ npm run dev
 ```
 
 Frontend mặc định chạy tại `http://localhost:5173` và gọi API tại `http://localhost:8080/api/v1`. Thay `VITE_API_URL` trong `.env.local` nếu backend chạy ở địa chỉ khác.
+
+### Chuẩn hóa định dạng code
+
+```powershell
+# Java: sửa format / chỉ kiểm tra
+cd Backend
+.\format.ps1
+.\format.ps1 -Check
+
+# TypeScript, TSX và CSS: sửa format / chỉ kiểm tra
+cd ..\Frontend
+npm run format
+npm run format:check
+```
+
+Formatter chỉ thay đổi trình bày, không thay đổi nghiệp vụ. Comment tập trung vào luồng dữ liệu, authorization, transaction và các đoạn khó hiểu thay vì lặp lại từng dòng code.
 
 ## Chạy test
 

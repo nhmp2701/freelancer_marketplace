@@ -13,21 +13,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserSkillController {
 
-    private final UserSkillService userSkillService;
+  private final UserSkillService userSkillService;
 
-    @PostMapping
-    public ResponseEntity<Void> addSkill(
-            Authentication authentication,
-            @Valid @RequestBody AddSkillRequest request) {
-        userSkillService.addSkillToUser(authentication.getName(), request);
-        return ResponseEntity.ok().build();
-    }
+  @PostMapping
+  public ResponseEntity<Void> addSkill(
+      Authentication authentication, @Valid @RequestBody AddSkillRequest request) {
+    userSkillService.addSkillToUser(authentication.getName(), request);
+    return ResponseEntity.ok().build();
+  }
 
-    @DeleteMapping("/{skillName}")
-    public ResponseEntity<Void> removeSkill(
-            Authentication authentication,
-            @PathVariable String skillName) {
-        userSkillService.removeSkillFromUser(authentication.getName(), skillName);
-        return ResponseEntity.ok().build();
-    }
+  @DeleteMapping("/{skillName}")
+  public ResponseEntity<Void> removeSkill(
+      Authentication authentication, @PathVariable String skillName) {
+    userSkillService.removeSkillFromUser(authentication.getName(), skillName);
+    return ResponseEntity.ok().build();
+  }
 }
